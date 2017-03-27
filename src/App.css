@@ -23,12 +23,13 @@
   to { transform: rotate(360deg); }
 }
 .ruleTable {
+  /*temporary color*/
   background-color: pink;
   padding-left: 90px;
 }
 
 .td_box {
-  padding: 30px;
+  padding: 20px;
   border: solid;
   border-width: thin;
   border-color: cornflowerblue;

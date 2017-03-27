@@ -8,10 +8,13 @@ import {SortableContainer, SortableElement, arrayMove} from 'react-sortable-hoc'
 class SortableComponent extends Component {
   state = {
     rules: [
-      {name: "rule1", color: "blue"},
-      {name: "rule2", color: "blue"},
-      {name: "rule3", color: "blue"},
-      {name: "rule4", color: "blue"}
+      {engine: "google", locale_regex: "", strategy: "first_page", keyword_regex: "", max_tries: 0, proxy_bal: "google_ec2", division: " > ", dest_scraper: "Scrapeable.homepage_first_page_search", overwrite: "", raw_html: ""},
+      {engine: "google", locale_regex: "", strategy: "first_page", keyword_regex: "", max_tries: 0, proxy_bal: "google_ec2_intl", division: " > ", dest_scraper: "Scrapeable.homepage_first_page_search", overwrite: "", raw_html: ""},
+      {engine: "google", locale_regex: "ko-KR", strategy: "first_page", keyword_regex: "", max_tries: 100, proxy_bal: "google_ec2_au", division: " > ", dest_scraper: "Scrapeable.homepage_first_page_search", overwrite: "", raw_html: ""},
+      {engine: "yahoo", locale_regex: "ja-JP", strategy: "first_page", keyword_regex: "", max_tries: 0, proxy_bal: "yahoo_ec2", division: " > ", dest_scraper: "Scrapeable.homepage_first_page_search", overwrite: "", raw_html: ""},
+      {engine: "yahoo", locale_regex: "", strategy: "", keyword_regex: "", max_tries: 0, proxy_bal: "yahoo_ec2", division: " > ", dest_scraper: "Scrapeable.homepage_first_page_search", overwrite: "", raw_html: ""},
+      {engine: "bing", locale_regex: "zh-HK", strategy: "", keyword_regex: "", max_tries: 100, proxy_bal: "bing_api", division: " > ", dest_scraper: "Scrapeable.homepage_first_page_search", overwrite: "", raw_html: ""},
+      {engine: "bing", locale_regex: "", strategy: "", keyword_regex: "", max_tries: 0, proxy_bal: "bing_ec2", division: " > ", dest_scraper: "Scrapeable.homepage_first_page_search", overwrite: "", raw_html: ""}
     ]
   };
   onSortEnd = ({oldIndex, newIndex}) => {
@@ -44,10 +47,34 @@ const SortableList = SortableContainer(
 const SortableItem = SortableElement(({value}) =>
   <tr>
     <td className="td_box">
-      {value.name}
+      {value.engine}
     </td>
     <td className="td_box">
-      {value.color}
+      {value.locale_regex}
+    </td>
+    <td className="td_box">
+      {value.strategy}
+    </td>
+    <td className="td_box">
+      {value.keyword_regex}
+    </td>
+    <td className="td_box">
+      {value.max_tries}
+    </td>
+    <td className="td_box">
+      {value.proxy_bal}
+    </td>
+    <td className="td_box">
+      {value.division}
+    </td>
+    <td className="td_box">
+      {value.dest_scraper}
+    </td>
+    <td className="td_box">
+      {value.overwrite}
+    </td>
+    <td className="td_box">
+      {value.raw_html}
     </td>
   </tr>
 )
