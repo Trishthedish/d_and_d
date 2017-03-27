@@ -5,6 +5,9 @@ import 'react-virtualized/styles.css'
 // Using an ES6 transpiler like Babel
 import {SortableContainer, SortableElement, arrayMove} from 'react-sortable-hoc';
 
+// const var blue = "#070F4E"
+// const lighterBlue = "#2772DB"
+// const  lightestBlue = #3AB1C8
 class SortableComponent extends Component {
   state = {
     rules: [
@@ -25,8 +28,7 @@ class SortableComponent extends Component {
    render() {
     return <SortableList rules={this.state.rules} onSortEnd={this.onSortEnd} />;
   }
-
-}
+} // end of SortableComponent
 
 const SortableList = SortableContainer(
   (state) => {
@@ -42,7 +44,7 @@ const SortableList = SortableContainer(
       </p>
     );
   }
-)
+) // end of SortableList
 
 const SortableItem = SortableElement(({value}) =>
   <tr>
@@ -77,7 +79,7 @@ const SortableItem = SortableElement(({value}) =>
       {value.raw_html}
     </td>
   </tr>
-)
+) // end of SortableItem
 
 class App extends Component {
   render() {
