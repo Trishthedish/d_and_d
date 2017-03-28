@@ -24,12 +24,12 @@
 }
 .ruleTable {
   /*temporary color*/
-  background-color: blue;
+  /*background-color: blue;*/
   padding-left: 90px;
 }
 
 .td_box {
-  padding: 20px;
+  padding: 10px;
   border: solid;
   border-width: thin;
   border-color: cornflowerblue;

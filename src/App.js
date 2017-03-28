@@ -5,6 +5,8 @@ import 'react-virtualized/styles.css'
 // Using an ES6 transpiler like Babel
 import {SortableContainer, SortableElement, arrayMove} from 'react-sortable-hoc';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
+
 // import injectTapEventPlugin from 'react-tap-event-plugin';
 
 // Needed for onTouchTap
@@ -15,38 +17,38 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 // const lighterBlue = "#2772DB"
 // const  lightestBlue = #3AB1C8
 const SortableItem = SortableElement(({value}) =>
-  <tr>
-    <td className="td_box">
+  <TableRow>
+    <TableRowColumn className="td_box">
       {value.engine}
-    </td>
-    <td className="td_box">
+    </TableRowColumn>
+    <TableRowColumn className="td_box">
       {value.locale_regex}
-    </td>
-    <td className="td_box">
+    </TableRowColumn>
+    <TableRowColumn className="td_box">
       {value.strategy}
-    </td>
-    <td className="td_box">
+    </TableRowColumn>
+    <TableRowColumn className="td_box">
       {value.keyword_regex}
-    </td>
-    <td className="td_box">
+    </TableRowColumn>
+    <TableRowColumn className="td_box">
       {value.max_tries}
-    </td>
-    <td className="td_box">
+    </TableRowColumn>
+    <TableRowColumn className="td_box">
       {value.proxy_bal}
-    </td>
-    <td className="td_box">
+    </TableRowColumn>
+    <TableRowColumn className="td_box">
       {value.division}
-    </td>
-    <td className="td_box">
+    </TableRowColumn>
+    <TableRowColumn className="td_box">
       {value.dest_scraper}
-    </td>
-    <td className="td_box">
+    </TableRowColumn>
+    <TableRowColumn className="td_box">
       {value.overwrite}
-    </td>
-    <td className="td_box">
+    </TableRowColumn>
+    <TableRowColumn className="td_box">
       {value.raw_html}
-    </td>
-  </tr>
+    </TableRowColumn>
+  </TableRow>
 ) // end of SortableItem
 
 const SortableList = SortableContainer(
@@ -56,11 +58,11 @@ const SortableList = SortableContainer(
 
     return (
 
-      <tbody className="ruleTable">
+      <div className="ruleTable">
         {rules.map((value, index) => (
           <SortableItem key={`rule-${index}`} index={index} value={value} />
         ))}
-      </tbody>
+      </div>
     );
   }
 ) // end of SortableList
@@ -90,6 +92,7 @@ class SortableComponent extends Component {
 class App extends Component {
   render() {
     return (
+      <MuiThemeProvider>
       <div className="App">
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
@@ -101,6 +104,7 @@ class App extends Component {
 
         <div><SortableComponent/></div>
       </div>
+      </MuiThemeProvider>
     );
   }
 }
