@@ -17,38 +17,59 @@ import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColu
 // const lighterBlue = "#2772DB"
 // const  lightestBlue = #3AB1C8
 const SortableItem = SortableElement(({value}) =>
-  <TableRow>
-    <TableRowColumn className="td_box">
-      {value.engine}
-    </TableRowColumn>
-    <TableRowColumn className="td_box">
-      {value.locale_regex}
-    </TableRowColumn>
-    <TableRowColumn className="td_box">
-      {value.strategy}
-    </TableRowColumn>
-    <TableRowColumn className="td_box">
-      {value.keyword_regex}
-    </TableRowColumn>
-    <TableRowColumn className="td_box">
-      {value.max_tries}
-    </TableRowColumn>
-    <TableRowColumn className="td_box">
-      {value.proxy_bal}
-    </TableRowColumn>
-    <TableRowColumn className="td_box">
-      {value.division}
-    </TableRowColumn>
-    <TableRowColumn className="td_box">
-      {value.dest_scraper}
-    </TableRowColumn>
-    <TableRowColumn className="td_box">
-      {value.overwrite}
-    </TableRowColumn>
-    <TableRowColumn className="td_box">
-      {value.raw_html}
-    </TableRowColumn>
-  </TableRow>
+
+
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHeaderColumn>Engine</TableHeaderColumn>
+          <TableHeaderColumn>Locael Regex</TableHeaderColumn>
+          <TableHeaderColumn>Strategy</TableHeaderColumn>
+          <TableHeaderColumn>keyword_regex</TableHeaderColumn>
+          <TableHeaderColumn>max_tries</TableHeaderColumn>
+          <TableHeaderColumn>Prox_Balancer</TableHeaderColumn>
+          <TableHeaderColumn> Div </TableHeaderColumn>
+          <TableHeaderColumn> dest_scraper </TableHeaderColumn>
+          <TableHeaderColumn> overwrite </TableHeaderColumn>
+          <TableHeaderColumn> raw_html </TableHeaderColumn>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableRow>
+          <TableRowColumn className="td_box">
+            {value.engine}
+          </TableRowColumn>
+          <TableRowColumn className="td_box">
+            {value.locale_regex}
+          </TableRowColumn>
+          <TableRowColumn className="td_box">
+            {value.strategy}
+          </TableRowColumn>
+          <TableRowColumn className="td_box">
+            {value.keyword_regex}
+          </TableRowColumn>
+          <TableRowColumn className="td_box">
+            {value.max_tries}
+          </TableRowColumn>
+          <TableRowColumn className="td_box">
+            {value.proxy_bal}
+          </TableRowColumn>
+          <TableRowColumn className="td_box">
+            {value.division}
+          </TableRowColumn>
+          <TableRowColumn className="td_box">
+            {value.dest_scraper}
+          </TableRowColumn>
+          <TableRowColumn className="td_box">
+            {value.overwrite}
+          </TableRowColumn>
+          <TableRowColumn className="td_box">
+            {value.raw_html}
+          </TableRowColumn>
+        </TableRow>
+      </TableBody>
+    </Table>
+
 ) // end of SortableItem
 
 const SortableList = SortableContainer(
