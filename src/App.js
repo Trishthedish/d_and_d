@@ -16,8 +16,10 @@ import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColu
 // const var blue = "#070F4E"
 // const lighterBlue = "#2772DB"
 // const  lightestBlue = #3AB1C8
+
+
 const SortableItem = SortableElement(({value}) =>
-<Table> 
+<Table>
   <TableBody>
     <TableRow>
       <TableRowColumn className="td_box">
