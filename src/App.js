@@ -4,10 +4,126 @@ import './App.css';
 import 'react-virtualized/styles.css'
 // Using an ES6 transpiler like Babel
 import {SortableContainer, SortableElement, arrayMove} from 'react-sortable-hoc';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 
+// import injectTapEventPlugin from 'react-tap-event-plugin';
+
+// Needed for onTouchTap
+// http://stackoverflow.com/a/34015469/988941
+// injectTapEventPlugin();
+// import MyAwesomeReactComponent from './MyAwesomeReactComponent';
 // const var blue = "#070F4E"
 // const lighterBlue = "#2772DB"
 // const  lightestBlue = #3AB1C8
+
+
+const SortableItem = SortableElement(({value}) =>
+
+    <TableRow>
+      <TableRowColumn className="td_box">
+        {value.engine}
+      </TableRowColumn>
+      <TableRowColumn className="td_box">
+        {value.locale_regex}
+      </TableRowColumn>
+      <TableRowColumn className="td_box">
+        {value.strategy}
+      </TableRowColumn>
+      <TableRowColumn className="td_box">
+        {value.keyword_regex}
+      </TableRowColumn>
+      <TableRowColumn className="td_box">
+        {value.max_tries}
+      </TableRowColumn>
+      <TableRowColumn className="td_box">
+        {value.proxy_bal}
+      </TableRowColumn>
+      <TableRowColumn className="td_box">
+        {value.division}
+      </TableRowColumn>
+      <TableRowColumn className="td_box">
+        {value.dest_scraper}
+      </TableRowColumn>
+      <TableRowColumn className="td_box">
+        {value.overwrite}
+      </TableRowColumn>
+      <TableRowColumn className="td_box">
+        {value.raw_html}
+      </TableRowColumn>
+    </TableRow>
+) // end of SortableItem
+
+const SortableList = SortableContainer(
+  (state) => {
+
+
+
+
+
+
+    const {rules} = state
+
+    return (
+
+      <Table>
+        <TableHeader
+          displaySelectAll = {false}
+          adjustForCheckbox	= {false}
+
+
+          >
+          <TableRow
+            showRowHover = {true}
+            rowNumber	= {1}
+            displayBorder = {true}
+            >
+            <TableHeaderColumn tooltip={"Search Engines: like google, bing, yahoo"}>
+              Engine
+            </TableHeaderColumn>
+            <TableHeaderColumn tooltip={"Language - Country of origin"}>
+              Locale Regex
+            </TableHeaderColumn>
+            <TableHeaderColumn tooltip={"What strategy to use"}>
+              Strategy
+            </TableHeaderColumn>
+            <TableHeaderColumn tooltip={"Who uses this??"}>
+              Keyword Regex
+            </TableHeaderColumn>
+            <TableHeaderColumn tooltip={"0 - 100"}>
+              max_tries
+            </TableHeaderColumn>
+            <TableHeaderColumn tooltip={"What Proxy Balancer to use"}>
+              proxy_bal
+            </TableHeaderColumn>
+            <TableHeaderColumn tooltip={"This will be a symbol."}>
+              division
+            </TableHeaderColumn>
+            <TableHeaderColumn tooltip={"Scraper that will be used"}>
+              dest_scraper
+            </TableHeaderColumn>
+            <TableHeaderColumn tooltip={"No idea what this is."}>
+              overwrite
+            </TableHeaderColumn>
+            <TableHeaderColumn tooltip={"hardly ever used."}>
+              raw_html
+            </TableHeaderColumn>
+          </TableRow>
+        </TableHeader>
+        <TableBody className="ruleTable"
+          showRowHover = {true}
+
+          >
+            {rules.map((value, index) => (
+              <SortableItem key={`rule-${index}`} index={index} value={value} />
+            ))}
+        </TableBody>
+    </Table>
+
+    );
+  }
+) // end of SortableList
+
 class SortableComponent extends Component {
   state = {
     rules: [
@@ -30,70 +146,22 @@ class SortableComponent extends Component {
   }
 } // end of SortableComponent
 
-const SortableList = SortableContainer(
-  (state) => {
-
-    const {rules} = state
-
-    return (
-
-      <p className="ruleTable">
-        {rules.map((value, index) => (
-          <SortableItem key={`rule-${index}`} index={index} value={value} />
-        ))}
-      </p>
-    );
-  }
-) // end of SortableList
-
-const SortableItem = SortableElement(({value}) =>
-  <tr>
-    <td className="td_box">
-      {value.engine}
-    </td>
-    <td className="td_box">
-      {value.locale_regex}
-    </td>
-    <td className="td_box">
-      {value.strategy}
-    </td>
-    <td className="td_box">
-      {value.keyword_regex}
-    </td>
-    <td className="td_box">
-      {value.max_tries}
-    </td>
-    <td className="td_box">
-      {value.proxy_bal}
-    </td>
-    <td className="td_box">
-      {value.division}
-    </td>
-    <td className="td_box">
-      {value.dest_scraper}
-    </td>
-    <td className="td_box">
-      {value.overwrite}
-    </td>
-    <td className="td_box">
-      {value.raw_html}
-    </td>
-  </tr>
-) // end of SortableItem
-
 class App extends Component {
   render() {
     return (
+      <MuiThemeProvider>
       <div className="App">
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome to React</h2>
         </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <h1 className="App-intro">
+          SWAPPABLE REMASTERED
+        </h1>
+
         <div><SortableComponent/></div>
       </div>
+      </MuiThemeProvider>
     );
   }
 }
