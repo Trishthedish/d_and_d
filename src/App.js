@@ -19,8 +19,7 @@ import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColu
 
 
 const SortableItem = SortableElement(({value}) =>
-<Table>
-  <TableBody>
+
     <TableRow>
       <TableRowColumn className="td_box">
         {value.engine}
@@ -53,22 +52,74 @@ const SortableItem = SortableElement(({value}) =>
         {value.raw_html}
       </TableRowColumn>
     </TableRow>
-  </TableBody>
-</Table>
 ) // end of SortableItem
 
 const SortableList = SortableContainer(
   (state) => {
 
+
+
+
+
+
     const {rules} = state
 
     return (
 
-      <div className="ruleTable">
-        {rules.map((value, index) => (
-          <SortableItem key={`rule-${index}`} index={index} value={value} />
-        ))}
-      </div>
+      <Table>
+        <TableHeader
+          displaySelectAll = {false}
+          adjustForCheckbox	= {false}
+
+
+          >
+          <TableRow
+            showRowHover = {true}
+            rowNumber	= {1}
+            displayBorder = {true}
+            >
+            <TableHeaderColumn tooltip={"Search Engines: like google, bing, yahoo"}>
+              Engine
+            </TableHeaderColumn>
+            <TableHeaderColumn tooltip={"Language - Country of origin"}>
+              Locale Regex
+            </TableHeaderColumn>
+            <TableHeaderColumn tooltip={"What strategy to use"}>
+              Strategy
+            </TableHeaderColumn>
+            <TableHeaderColumn tooltip={"Who uses this??"}>
+              Keyword Regex
+            </TableHeaderColumn>
+            <TableHeaderColumn tooltip={"0 - 100"}>
+              max_tries
+            </TableHeaderColumn>
+            <TableHeaderColumn tooltip={"What Proxy Balancer to use"}>
+              proxy_bal
+            </TableHeaderColumn>
+            <TableHeaderColumn tooltip={"This will be a symbol."}>
+              division
+            </TableHeaderColumn>
+            <TableHeaderColumn tooltip={"Scraper that will be used"}>
+              dest_scraper
+            </TableHeaderColumn>
+            <TableHeaderColumn tooltip={"No idea what this is."}>
+              overwrite
+            </TableHeaderColumn>
+            <TableHeaderColumn tooltip={"hardly ever used."}>
+              raw_html
+            </TableHeaderColumn>
+          </TableRow>
+        </TableHeader>
+        <TableBody className="ruleTable"
+          showRowHover = {true}
+
+          >
+            {rules.map((value, index) => (
+              <SortableItem key={`rule-${index}`} index={index} value={value} />
+            ))}
+        </TableBody>
+    </Table>
+
     );
   }
 ) // end of SortableList
@@ -104,9 +155,9 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome to React</h2>
         </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <h1 className="App-intro">
+          SWAPPABLE REMASTERED
+        </h1>
 
         <div><SortableComponent/></div>
       </div>
