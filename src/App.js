@@ -7,6 +7,10 @@ import {SortableContainer, SortableElement, arrayMove} from 'react-sortable-hoc'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 
+import FontIcon from 'material-ui/FontIcon';
+import {red500, yellow500, blue500, greenA200} from 'material-ui/styles/colors';
+import google_icon from '../src/google_icon.png';
+
 // import injectTapEventPlugin from 'react-tap-event-plugin';
 
 // Needed for onTouchTap
@@ -17,6 +21,20 @@ import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColu
 // const lighterBlue = "#2772DB"
 // const  lightestBlue = #3AB1C8
 
+
+
+const iconStyles = {
+  fontSize: '48px',
+  height: 40,
+};
+
+const FontIconExampleIcons = () => (
+  <div>
+    <FontIcon className="material-icons" style={iconStyles} color={blue500} hoverColor={greenA200}>home</FontIcon>
+    <FontIcon className="material-icons" style={iconStyles}>flight_takeoff</FontIcon>
+    <FontIcon className="material-icons" style={iconStyles}>videogame_asset</FontIcon>
+  </div>
+);
 
 const SortableItem = SortableElement(({value}) =>
 
@@ -66,13 +84,8 @@ const SortableList = SortableContainer(
 
     return (
 
-      <Table>
-        <TableHeader
-          displaySelectAll = {false}
-          adjustForCheckbox	= {false}
-
-
-          >
+      <Table className="ruleTable">
+        <TableHeader displaySelectAll = {false} adjustForCheckbox	= {false} >
           <TableRow
             showRowHover = {true}
             rowNumber	= {1}
@@ -155,6 +168,13 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome to React</h2>
         </div>
+
+        <section>
+          <FontIconExampleIcons />
+            <img src={google_icon}/>
+
+        </section>
+
         <h1 className="App-intro">
           SWAPPABLE REMASTERED
         </h1>
