@@ -6,10 +6,14 @@ import 'react-virtualized/styles.css'
 import {SortableContainer, SortableElement, arrayMove} from 'react-sortable-hoc';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
+import RaisedButton from 'material-ui/RaisedButton';
 
+import ActionAndroid from 'material-ui/svg-icons/action/android';
 import FontIcon from 'material-ui/FontIcon';
 import {red500, yellow500, blue500, greenA200} from 'material-ui/styles/colors';
 import google_icon from '../src/google_icon.png';
+import yahoo_icon from '../src/yahoo_icon.png';
+import bing_icon from '../src/bing_icon.png';
 
 // import injectTapEventPlugin from 'react-tap-event-plugin';
 
@@ -20,13 +24,31 @@ import google_icon from '../src/google_icon.png';
 // const var blue = "#070F4E"
 // const lighterBlue = "#2772DB"
 // const  lightestBlue = #3AB1C8
-
-
+      // <img src={google_icon}/>
+const engineIcons = {
+  width: '35px',
+  height: '35px',
+}
 
 const iconStyles = {
   fontSize: '48px',
   height: 40,
 };
+
+const buttonStyle = {
+  margin: 12,
+}
+const RaisedButtonExampleSimple = () => (
+  <div>
+    <p>Filters</p>
+    <RaisedButton label="Google" secondary={true} style={buttonStyle} />
+    <RaisedButton label="Yahoo" primary={true} style={buttonStyle} />
+    <RaisedButton label="Bing" disabled={false} style={buttonStyle} backgroundColor="#a4c639" />
+    <RaisedButton label="All" style={buttonStyle} />
+    <br />
+  </div>
+);
+
 
 const FontIconExampleIcons = () => (
   <div>
@@ -35,6 +57,16 @@ const FontIconExampleIcons = () => (
     <FontIcon className="material-icons" style={iconStyles}>videogame_asset</FontIcon>
   </div>
 );
+
+const EngineIcon = () => (
+  <div>
+    <img src={google_icon} style={engineIcons}color={blue500} hoverColor={greenA200}></img>
+    <img src={yahoo_icon} style={engineIcons}></img>
+    <img src={bing_icon} style={engineIcons}></img>
+
+  </div>
+);
+
 
 const SortableItem = SortableElement(({value}) =>
 
@@ -74,9 +106,6 @@ const SortableItem = SortableElement(({value}) =>
 
 const SortableList = SortableContainer(
   (state) => {
-
-
-
 
 
 
@@ -166,15 +195,12 @@ class App extends Component {
       <div className="App">
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+          <h2>Swappable Remastered</h2>
         </div>
 
-        <section>
-          <FontIconExampleIcons />
-            <img src={google_icon}/>
 
-        </section>
 
+        <RaisedButtonExampleSimple/>
         <h1 className="App-intro">
           SWAPPABLE REMASTERED
         </h1>
