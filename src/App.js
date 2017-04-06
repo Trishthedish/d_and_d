@@ -21,13 +21,14 @@ import bing_icon from '../src/bing_icon.png';
 // http://stackoverflow.com/a/34015469/988941
 // injectTapEventPlugin();
 // import MyAwesomeReactComponent from './MyAwesomeReactComponent';
-// const var blue = "#070F4E"
-// const lighterBlue = "#2772DB"
-// const  lightestBlue = #3AB1C8
+// const blue = "#070F4E";
+// const lighterBlue = "#2772DB";
+// const  lightestBlue = "#3AB1C8";
       // <img src={google_icon}/>
-const engineIcons = {
-  width: '35px',
-  height: '35px',
+const engineIcon = {
+  width: '41px',
+  height: '40px',
+  padding: '4px',
 }
 
 const iconStyles = {
@@ -38,9 +39,13 @@ const iconStyles = {
 const buttonStyle = {
   margin: 12,
 }
+
+
+// example of creating buttons instead of using icons.
 const RaisedButtonExampleSimple = () => (
-  <div>
-    <p>Filters</p>
+  <div className ="RaisedButtonExampleSimple">
+    <h1>Material UI Raised Button Example</h1>
+    <p className="RaisedButtonTitle">Filters</p>
     <RaisedButton label="Google" secondary={true} style={buttonStyle} />
     <RaisedButton label="Yahoo" primary={true} style={buttonStyle} />
     <RaisedButton label="Bing" disabled={false} style={buttonStyle} backgroundColor="#a4c639" />
@@ -52,22 +57,25 @@ const RaisedButtonExampleSimple = () => (
 
 const FontIconExampleIcons = () => (
   <div>
-    <FontIcon className="material-icons" style={iconStyles} color={blue500} hoverColor={greenA200}>home</FontIcon>
-    <FontIcon className="material-icons" style={iconStyles}>flight_takeoff</FontIcon>
-    <FontIcon className="material-icons" style={iconStyles}>videogame_asset</FontIcon>
+    <h1>Material-UI Icon Examples</h1>
+    <FontIcon className="material-icons" style={iconStyles} color={blue500} hoverColor={yellow500}>home</FontIcon>
+    <FontIcon className="material-icons" style={iconStyles} hoverColor={red500}>flight_takeoff</FontIcon>
+    <FontIcon className="material-icons" style={iconStyles} hoverColor={'#2772DB'}>videogame_asset</FontIcon>
   </div>
 );
 
-const EngineIcon = () => (
-  <div>
-    <img src={google_icon} style={engineIcons}color={blue500} hoverColor={greenA200}></img>
-    <img src={yahoo_icon} style={engineIcons}></img>
-    <img src={bing_icon} style={engineIcons}></img>
+// list of engine icons that designed myself
+const HomemadeEngineIcons = () => (
+  <div className="HomemadeEngineIcons">
+    <h1>HomemadeEngineIcons</h1>
+    <img src={google_icon} style={engineIcon} color={'#3AB1C8'} hoverColor={greenA200}></img>
+    <img src={yahoo_icon} style={engineIcon}></img>
+    <img src={bing_icon} style={engineIcon}></img>
 
   </div>
 );
 
-
+// allows rules to be sorted..
 const SortableItem = SortableElement(({value}) =>
 
     <TableRow>
@@ -195,18 +203,21 @@ class App extends Component {
       <div className="App">
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h2>Swappable Remastered</h2>
+          <h2>Swappable Remasterednpm </h2>
         </div>
 
+        <FontIconExampleIcons/>
+
+        <hr></hr>
+        <HomemadeEngineIcons/>
 
 
         <RaisedButtonExampleSimple/>
-        <h1 className="App-intro">
-          SWAPPABLE REMASTERED
-        </h1>
+        <h1 className="App-intro"> The Rules Table</h1>
 
         <div><SortableComponent/></div>
       </div>
+
       </MuiThemeProvider>
     );
   }
