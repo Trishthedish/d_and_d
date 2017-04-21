@@ -14,6 +14,8 @@ import {red500, yellow500, blue500, greenA200} from 'material-ui/styles/colors';
 import google_icon from '../src/google_icon.png';
 import yahoo_icon from '../src/yahoo_icon.png';
 import bing_icon from '../src/bing_icon.png';
+import {emojify} from 'react-emojione';
+
 
 
 const engineIcon = {
@@ -56,6 +58,7 @@ const RaisedButtonExampleSimple = () => (
 //
 //   </div>
 // );
+
 
 // allows rules to be sorted..
 const SortableItem = SortableElement(({value}) =>
@@ -159,13 +162,13 @@ const SortableList = SortableContainer(
 class SortableComponent extends Component {
   state = {
     rules: [
-      {engine: "google", locale_regex: "", strategy: "first_page", keyword_regex: "", max_tries: 0, proxy_bal: "google_ec2", division: " > ", dest_scraper: "Scrapeable.homepage_first_page_search", overwrite: "", raw_html: ""},
-      {engine: "google", locale_regex: "", strategy: "first_page", keyword_regex: "", max_tries: 0, proxy_bal: "google_ec2_intl", division: " > ", dest_scraper: "Scrapeable.homepage_first_page_search", overwrite: "", raw_html: ""},
-      {engine: "google", locale_regex: "ko-KR", strategy: "first_page", keyword_regex: "", max_tries: 100, proxy_bal: "google_ec2_au", division: " > ", dest_scraper: "Scrapeable.homepage_first_page_search", overwrite: "", raw_html: ""},
-      {engine: "yahoo", locale_regex: "ja-JP", strategy: "first_page", keyword_regex: "", max_tries: 0, proxy_bal: "yahoo_ec2", division: " > ", dest_scraper: "Scrapeable.homepage_first_page_search", overwrite: "", raw_html: ""},
-      {engine: "yahoo", locale_regex: "", strategy: "", keyword_regex: "", max_tries: 0, proxy_bal: "yahoo_ec2", division: " > ", dest_scraper: "Scrapeable.homepage_first_page_search", overwrite: "", raw_html: ""},
-      {engine: "bing", locale_regex: "zh-HK", strategy: "", keyword_regex: "", max_tries: 100, proxy_bal: "bing_api", division: " > ", dest_scraper: "Scrapeable.homepage_first_page_search", overwrite: "", raw_html: ""},
-      {engine: "bing", locale_regex: "", strategy: "", keyword_regex: "", max_tries: 0, proxy_bal: "bing_ec2", division: " > ", dest_scraper: "Scrapeable.homepage_first_page_search", overwrite: "", raw_html: ""}
+      {engine: "google", locale_regex: "", strategy: "first_page", keyword_regex: "", max_tries: 0, proxy_bal: "google_ec2", division: "➡️", dest_scraper: "Scrapeable.homepage_first_page_search", overwrite: "", raw_html: ""},
+      {engine: "google", locale_regex: "", strategy: "first_page", keyword_regex: "", max_tries: 0, proxy_bal: "google_ec2_intl", division: "➡️", dest_scraper: "Scrapeable.homepage_first_page_search", overwrite: "", raw_html: ""},
+      {engine: "google", locale_regex: "ko-KR", strategy: "first_page", keyword_regex: "", max_tries: 100, proxy_bal: "google_ec2_au", division: "➡️", dest_scraper: "Scrapeable.homepage_first_page_search", overwrite: "", raw_html: ""},
+      {engine: "yahoo", locale_regex: "ja-JP", strategy: "first_page", keyword_regex: "", max_tries: 0, proxy_bal: "yahoo_ec2", division: "➡️", dest_scraper: "Scrapeable.homepage_first_page_search", overwrite: "", raw_html: ""},
+      {engine: "yahoo", locale_regex: "", strategy: "", keyword_regex: "", max_tries: 0, proxy_bal: "yahoo_ec2", division: "➡️", dest_scraper: "Scrapeable.homepage_first_page_search", overwrite: "", raw_html: ""},
+      {engine: "bing", locale_regex: "zh-HK", strategy: "", keyword_regex: "", max_tries: 100, proxy_bal: "bing_api", division: "➡️", dest_scraper: "Scrapeable.homepage_first_page_search", overwrite: "", raw_html: ""},
+      {engine: "bing", locale_regex: "", strategy: "", keyword_regex: "", max_tries: 0, proxy_bal: "bing_ec2", division: "➡️", dest_scraper: "Scrapeable.homepage_first_page_search", overwrite: "", raw_html: ""}
     ]
   };
   onSortEnd = ({oldIndex, newIndex}) => {
@@ -187,6 +190,9 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Swappable Remastered</h2>
         </div>
+        <div>
+      </div>
+
         <RaisedButtonExampleSimple/>
         <h1 className="App-intro"> The Rules Table</h1>
 
