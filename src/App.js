@@ -15,16 +15,7 @@ import google_icon from '../src/google_icon.png';
 import yahoo_icon from '../src/yahoo_icon.png';
 import bing_icon from '../src/bing_icon.png';
 
-// import injectTapEventPlugin from 'react-tap-event-plugin';
 
-// Needed for onTouchTap
-// http://stackoverflow.com/a/34015469/988941
-// injectTapEventPlugin();
-// import MyAwesomeReactComponent from './MyAwesomeReactComponent';
-// const blue = "#070F4E";
-// const lighterBlue = "#2772DB";
-// const  lightestBlue = "#3AB1C8";
-      // <img src={google_icon}/>
 const engineIcon = {
   width: '41px',
   height: '40px',
