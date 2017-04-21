@@ -34,3 +34,15 @@
   border-width: thin;
   border-color: cornflowerblue;*/
 }
+
+.RaisedButtonExampleSimple {
+  text-align: left;
+  border: solid;
+  border-width: thin;
+  borer-color: green;
+  background-color: beige;
+}
+
+.RaisedButtonTitle {
+    text-align: center;
+}

@@ -6,18 +6,58 @@ import 'react-virtualized/styles.css'
 import {SortableContainer, SortableElement, arrayMove} from 'react-sortable-hoc';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
+import RaisedButton from 'material-ui/RaisedButton';
 
-// import injectTapEventPlugin from 'react-tap-event-plugin';
-
-// Needed for onTouchTap
-// http://stackoverflow.com/a/34015469/988941
-// injectTapEventPlugin();
-// import MyAwesomeReactComponent from './MyAwesomeReactComponent';
-// const var blue = "#070F4E"
-// const lighterBlue = "#2772DB"
-// const  lightestBlue = #3AB1C8
+import ActionAndroid from 'material-ui/svg-icons/action/android';
+import FontIcon from 'material-ui/FontIcon';
+import {red500, yellow500, blue500, greenA200} from 'material-ui/styles/colors';
+import google_icon from '../src/google_icon.png';
+import yahoo_icon from '../src/yahoo_icon.png';
+import bing_icon from '../src/bing_icon.png';
 
 
+const engineIcon = {
+  width: '41px',
+  height: '40px',
+  padding: '4px',
+}
+
+const iconStyles = {
+  fontSize: '48px',
+  height: 40,
+};
+
+const buttonStyle = {
+  margin: 12,
+}
+
+
+// example of creating buttons instead of using icons.
+// Material UI Raised Button Example
+//FILTERS
+const RaisedButtonExampleSimple = () => (
+  <div className ="RaisedButtonExampleSimple">
+    <RaisedButton label="Google" secondary={true} style={buttonStyle} />
+    <RaisedButton label="Yahoo" primary={true} style={buttonStyle} />
+    <RaisedButton label="Bing" disabled={false} style={buttonStyle} backgroundColor="#a4c639" />
+    <RaisedButton label="All" style={buttonStyle} />
+    <br />
+  </div>
+);
+
+
+// // list of engine icons that designed myself
+// const HomemadeEngineIcons = () => (
+//   <div className="HomemadeEngineIcons">
+//     <h1>HomemadeEngineIcons</h1>
+//     <img src={google_icon} style={engineIcon} color={'#3AB1C8'} hoverColor={greenA200}></img>
+//     <img src={yahoo_icon} style={engineIcon}></img>
+//     <img src={bing_icon} style={engineIcon}></img>
+//
+//   </div>
+// );
+
+// allows rules to be sorted..
 const SortableItem = SortableElement(({value}) =>
 
     <TableRow>
@@ -59,20 +99,12 @@ const SortableList = SortableContainer(
 
 
 
-
-
-
     const {rules} = state
 
     return (
 
-      <Table>
-        <TableHeader
-          displaySelectAll = {false}
-          adjustForCheckbox	= {false}
-
-
-          >
+      <Table className="ruleTable">
+        <TableHeader displaySelectAll = {false} adjustForCheckbox	= {false} >
           <TableRow
             showRowHover = {true}
             rowNumber	= {1}
@@ -153,14 +185,14 @@ class App extends Component {
       <div className="App">
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+          <h2>Swappable Remastered</h2>
         </div>
-        <h1 className="App-intro">
-          SWAPPABLE REMASTERED
-        </h1>
+        <RaisedButtonExampleSimple/>
+        <h1 className="App-intro"> The Rules Table</h1>
 
         <div><SortableComponent/></div>
       </div>
+
       </MuiThemeProvider>
     );
   }
