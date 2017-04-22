@@ -6,6 +6,7 @@
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-emojione": "^3.1.7",
+    "react-redux": "^5.0.4",
     "react-sortable-hoc": "^0.6.1",
     "react-tap-event-plugin": "^1.0.0",
     "react-virtualized": "^9.3.0"

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import logo from '../logo.svg';
 import './App.css';
 import 'react-virtualized/styles.css'
 // Using an ES6 transpiler like Babel
@@ -11,10 +11,8 @@ import RaisedButton from 'material-ui/RaisedButton';
 import ActionAndroid from 'material-ui/svg-icons/action/android';
 import FontIcon from 'material-ui/FontIcon';
 import {red500, yellow500, blue500, greenA200} from 'material-ui/styles/colors';
-import google_icon from '../src/google_icon.png';
-import yahoo_icon from '../src/yahoo_icon.png';
-import bing_icon from '../src/bing_icon.png';
-import {emojify} from 'react-emojione';
+// seems like this didn't truly need to be installed. TODO: DELELTE THIS FROM DEPEN.
+// import {emojify} from 'react-emojione';
 
 
 
@@ -38,7 +36,7 @@ const buttonStyle = {
 // Material UI Raised Button Example
 //FILTERS
 const RaisedButtonExampleSimple = () => (
-  <div className ="RaisedButtonExampleSimple">
+  <div className="RaisedButtonExampleSimple">
     <RaisedButton label="Google" secondary={true} style={buttonStyle} />
     <RaisedButton label="Yahoo" primary={true} style={buttonStyle} />
     <RaisedButton label="Bing" disabled={false} style={buttonStyle} backgroundColor="#a4c639" />
@@ -107,11 +105,11 @@ const SortableList = SortableContainer(
     return (
 
       <Table className="ruleTable">
-        <TableHeader displaySelectAll = {false} adjustForCheckbox	= {false} >
+        <TableHeader displaySelectAll={false} adjustForCheckbox={false} >
           <TableRow
-            showRowHover = {true}
-            rowNumber	= {1}
-            displayBorder = {true}
+            showRowHover={true}
+            rowNumber={1}
+            displayBorder={true}
             >
             <TableHeaderColumn tooltip={"Search Engines: like google, bing, yahoo"}>
               Engine
@@ -146,7 +144,7 @@ const SortableList = SortableContainer(
           </TableRow>
         </TableHeader>
         <TableBody className="ruleTable"
-          showRowHover = {true}
+          showRowHover={true}
 
           >
             {rules.map((value, index) => (
