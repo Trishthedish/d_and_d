@@ -25,5 +25,5 @@ export const deleteRule = (id) => ({
 
 export const setVisibilityFilter = (filter) => ({
   type: 'SET_VISIBILITY_FILTER',
-  id
+  filter
 })
