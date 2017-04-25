@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import RaisedButton from 'material-ui/RaisedButton';
 import {SortableContainer, SortableElement, arrayMove} from 'react-sortable-hoc';
+import RaisedButton from 'material-ui/RaisedButton';
 
 // import './App.css';
 // import 'react-virtualized/styles.css'
@@ -31,7 +31,7 @@ class Main extends Component {
            */}
 
          <h1 className="App-intro"> The Rules Table</h1>
-
+           <div><RaisedButton/></div>
 
 
        </div>
