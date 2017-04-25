@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import RaisedButton from 'material-ui/RaisedButton';
+import {SortableContainer, SortableElement, arrayMove} from 'react-sortable-hoc';
+
 // import './App.css';
 // import 'react-virtualized/styles.css'
 // Using an ES6 transpiler like Babel
@@ -22,10 +25,14 @@ class Main extends Component {
        </div>
 
        <div>
-         <RaisedButtonExampleSimple/>
+         {/*
+   <RaisedButtonExampleSimple/>
+    <div><SortableComponent/></div>
+           */}
+
          <h1 className="App-intro"> The Rules Table</h1>
 
-         <div><SortableComponent/></div>
+
 
        </div>
      </div>

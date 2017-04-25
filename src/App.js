@@ -15,7 +15,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 // import yahoo_icon from '../src/yahoo_icon.png';
 // import bing_icon from '../src/bing_icon.png';
 import Main from './containers/Main'
-import {emojify} from 'react-emojione';
+// import {emojify} from 'react-emojione';
 import {createStore, applyMiddleware} from 'redux'
 import thunkMiddleware from 'redux-thunk'
 import {createLogger} from 'redux-logger'
@@ -36,16 +36,16 @@ function configureStore(preloadedState) {
 }
 const store = configureStore()
 
-const engineIcon = {
-  width: '41px',
-  height: '40px',
-  padding: '4px',
-}
+// const engineIcon = {
+//   width: '41px',
+//   height: '40px',
+//   padding: '4px',
+// }
 
-const iconStyles = {
-  fontSize: '48px',
-  height: 40,
-};
+// const iconStyles = {
+//   fontSize: '48px',
+//   height: 40,
+// };
 
 const buttonStyle = {
   margin: 12,
@@ -195,6 +195,18 @@ class SortableComponent extends Component {
      });
    };
    render() {
+    // const currentEngineFilter = this.props.currentEngineFilter // comes from a reducer (MapStateToProps)
+    // // this.props.rules comes from reducer (MapStateToProps)
+    //
+    // const filteredRules = this.props.rules.filter(function (rule) {
+    //   if currentEngineFilter === 'all' {
+    //     return true
+    //   } else {
+    //     return rule.engine === currentEngineFilter
+    //   }
+    // })
+  //   return <SortableList rules={filteredRules} onSortEnd={this.onSortEnd} />;
+  // }
     return <SortableList rules={this.state.rules} onSortEnd={this.onSortEnd} />;
   }
 } // end of SortableComponent
@@ -215,13 +227,7 @@ class App extends Component {
         <Provider store={store}>
           <Main />
         </Provider>
-        {/*
-          <RaisedButtonExampleSimple/>
-          <h1 className="App-intro"> The Rules Table</h1>
-
-          <div><SortableComponent/></div>
-
-          */}
+    
 
       </div>
 

@@ -19,3 +19,6 @@ const FontIconExampleIcons = () => (
     <FontIcon className="material-icons" style={iconStyles} hoverColor={'#2772DB'}>videogame_asset</FontIcon>
   </div>
 );
+
+
+  <RaisedButton label="Google" secondary={true} style={buttonStyle} onClick={-> this.props.dispatch(updateFilter('google'))}/>
