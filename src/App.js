@@ -8,15 +8,33 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 import RaisedButton from 'material-ui/RaisedButton';
 
-import ActionAndroid from 'material-ui/svg-icons/action/android';
-import FontIcon from 'material-ui/FontIcon';
-import {red500, yellow500, blue500, greenA200} from 'material-ui/styles/colors';
-import google_icon from '../src/google_icon.png';
-import yahoo_icon from '../src/yahoo_icon.png';
-import bing_icon from '../src/bing_icon.png';
+// import ActionAndroid from 'material-ui/svg-icons/action/android';
+// import FontIcon from 'material-ui/FontIcon';
+// import {red500, yellow500, blue500, greenA200} from 'material-ui/styles/colors';
+// import google_icon from '../src/google_icon.png';
+// import yahoo_icon from '../src/yahoo_icon.png';
+// import bing_icon from '../src/bing_icon.png';
+import Main from './containers/Main'
 import {emojify} from 'react-emojione';
+import {createStore, applyMiddleware} from 'redux'
+import thunkMiddleware from 'redux-thunk'
+import {createLogger} from 'redux-logger'
+import rootReducer from './reducers'
+import {Provider} from 'react-redux'
 
+const loggerMiddleware = createLogger()
 
+function configureStore(preloadedState) {
+  return createStore(
+    rootReducer,
+    preloadedState,
+    applyMiddleware(
+      thunkMiddleware,
+      loggerMiddleware
+    )
+  )
+}
+const store = configureStore()
 
 const engineIcon = {
   width: '41px',
@@ -182,7 +200,9 @@ class SortableComponent extends Component {
 } // end of SortableComponent
 
 class App extends Component {
+
   render() {
+      console.log("store: ", store)
     return (
       <MuiThemeProvider>
       <div className="App">
@@ -192,11 +212,17 @@ class App extends Component {
         </div>
         <div>
       </div>
+        <Provider store={store}>
+          <Main />
+        </Provider>
+        {/*
+          <RaisedButtonExampleSimple/>
+          <h1 className="App-intro"> The Rules Table</h1>
 
-        <RaisedButtonExampleSimple/>
-        <h1 className="App-intro"> The Rules Table</h1>
+          <div><SortableComponent/></div>
 
-        <div><SortableComponent/></div>
+          */}
+
       </div>
 
       </MuiThemeProvider>

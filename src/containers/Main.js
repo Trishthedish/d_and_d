@@ -3,20 +3,42 @@ import React, { Component } from 'react';
 // import 'react-virtualized/styles.css'
 // Using an ES6 transpiler like Babel
 import {connect} from 'react-redux'
+import {updateName} from '../actions'
 
 
 class Main extends Component {
+  nameChangeHandler = (event) =>  {
+    const dispatch = this.props.dispatch
+    let act = updateName(event.target.value)
+    dispatch(act)
+  }
    render() {
-     return
+     return (
      <div>
        <h1>Hello World</h1>
-     </div>
+       <div>
+         <input value={this.props.name} onChange={this.nameChangeHandler}/>
+         <p>HELLLOOOO:{this.props.name}</p>
+       </div>
 
+       <div>
+         <RaisedButtonExampleSimple/>
+         <h1 className="App-intro"> The Rules Table</h1>
+
+         <div><SortableComponent/></div>
+
+       </div>
+     </div>
+   )
 
    }
  }
 function MapStateToProps(state) {
-  return {}
+  const name = state.main.name
+  console.log("this is state: ", state)
+  return {
+    name
+  }
 }
 
 export default connect(MapStateToProps)(Main)
