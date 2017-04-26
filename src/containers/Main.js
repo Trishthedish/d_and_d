@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import {SortableContainer, SortableElement, arrayMove} from 'react-sortable-hoc';
 import RaisedButton from 'material-ui/RaisedButton';
-
+import RaisedButtons from '../components/RaisedButton'
 // import './App.css';
 // import 'react-virtualized/styles.css'
 // Using an ES6 transpiler like Babel
+
 import {connect} from 'react-redux'
 import {updateName} from '../actions'
 
@@ -21,7 +22,7 @@ class Main extends Component {
        <h1>Hello World</h1>
        <div>
          <input value={this.props.name} onChange={this.nameChangeHandler}/>
-         <p>HELLLOOOO:{this.props.name}</p>
+         <p>HELLLOOOO: {this.props.name} !</p>
        </div>
 
        <div>

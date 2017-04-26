@@ -227,7 +227,7 @@ class App extends Component {
         <Provider store={store}>
           <Main />
         </Provider>
-    
+
 
       </div>
 
@@ -235,6 +235,6 @@ class App extends Component {
     );
   }
 }
-// /Users/trishgriego/practice/d_and_d/src/index.js
-//error  'SortableComponent' is not defined  react/jsx-no-undef
+
+
 export default App;
