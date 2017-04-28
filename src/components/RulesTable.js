@@ -1,81 +1,8 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from 'react';
 import 'react-virtualized/styles.css'
-// Using an ES6 transpiler like Babel
 import {SortableContainer, SortableElement, arrayMove} from 'react-sortable-hoc';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
-import RaisedButton from 'material-ui/RaisedButton';
-
-// import ActionAndroid from 'material-ui/svg-icons/action/android';
-// import FontIcon from 'material-ui/FontIcon';
-// import {red500, yellow500, blue500, greenA200} from 'material-ui/styles/colors';
-// import google_icon from '../src/google_icon.png';
-// import yahoo_icon from '../src/yahoo_icon.png';
-// import bing_icon from '../src/bing_icon.png';
-import Main from './containers/Main'
-// import {emojify} from 'react-emojione';
-import {createStore, applyMiddleware} from 'redux'
-import thunkMiddleware from 'redux-thunk'
-import {createLogger} from 'redux-logger'
-import rootReducer from './reducers'
-import {Provider} from 'react-redux'
-
-const loggerMiddleware = createLogger()
-
-function configureStore(preloadedState) {
-  return createStore(
-    rootReducer,
-    preloadedState,
-    applyMiddleware(
-      thunkMiddleware,
-      loggerMiddleware
-    )
-  )
-}
-const store = configureStore()
-
-// const engineIcon = {
-//   width: '41px',
-//   height: '40px',
-//   padding: '4px',
-// }
-
-// const iconStyles = {
-//   fontSize: '48px',
-//   height: 40,
-// };
-
-const buttonStyle = {
-  margin: 12,
-}
-
-
-// example of creating buttons instead of using icons.
-// Material UI Raised Button Example
-//FILTERS
-const RaisedButtonExampleSimple = () => (
-  <div className ="RaisedButtonExampleSimple">
-    <RaisedButton label="Google" secondary={true} style={buttonStyle} />
-    <RaisedButton label="Yahoo" primary={true} style={buttonStyle} />
-    <RaisedButton label="Bing" disabled={false} style={buttonStyle} backgroundColor="#a4c639" />
-    <RaisedButton label="All" style={buttonStyle} />
-    <br />
-  </div>
-);
-
-
-// // list of engine icons that designed myself
-// const HomemadeEngineIcons = () => (
-//   <div className="HomemadeEngineIcons">
-//     <h1>HomemadeEngineIcons</h1>
-//     <img src={google_icon} style={engineIcon} color={'#3AB1C8'} hoverColor={greenA200}></img>
-//     <img src={yahoo_icon} style={engineIcon}></img>
-//     <img src={bing_icon} style={engineIcon}></img>
-//
-//   </div>
-// );
 
 
 // allows rules to be sorted..
@@ -117,8 +44,6 @@ const SortableItem = SortableElement(({value}) =>
 
 const SortableList = SortableContainer(
   (state) => {
-
-
 
     const {rules} = state
 
@@ -195,46 +120,30 @@ class SortableComponent extends Component {
      });
    };
    render() {
-    // const currentEngineFilter = this.props.currentEngineFilter // comes from a reducer (MapStateToProps)
+    const currentEngineFilter = this.props.engine // comes from a reducer (MapStateToProps)
     // // this.props.rules comes from reducer (MapStateToProps)
     //
-    // const filteredRules = this.props.rules.filter(function (rule) {
-    //   if currentEngineFilter === 'all' {
-    //     return true
-    //   } else {
-    //     return rule.engine === currentEngineFilter
-    //   }
-    // })
+    const filteredRules = this.state.rules.filter(function (rule) {
+      if (currentEngineFilter === 'all') {
+        return true
+      } else {
+        return rule.engine === currentEngineFilter
+      }
+    })
   //   return <SortableList rules={filteredRules} onSortEnd={this.onSortEnd} />;
   // }
-    return <SortableList rules={this.state.rules} onSortEnd={this.onSortEnd} />;
+    return <SortableList rules={filteredRules} onSortEnd={this.onSortEnd} />;
   }
 } // end of SortableComponent
 
-class App extends Component {
 
+class RulesTable extends Component {
   render() {
-      console.log("App.js store: ", store)
+
     return (
-      <MuiThemeProvider>
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Swappable Remastered</h2>
-        </div>
-        <div>
-      </div>
-        <Provider store={store}>
-          <Main />
-        </Provider>
+      <div><SortableComponent engine={this.props.engine}/></div>
 
-
-      </div>
-
-      </MuiThemeProvider>
-    );
+    )
   }
 }
-
-
-export default App;
+export default RulesTable
