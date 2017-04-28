@@ -74,9 +74,6 @@ const SortableList = SortableContainer(
             <TableHeaderColumn tooltip={"What Proxy Balancer to use"}>
               proxy_bal
             </TableHeaderColumn>
-            <TableHeaderColumn tooltip={"This will be a symbol."}>
-              division
-            </TableHeaderColumn>
             <TableHeaderColumn tooltip={"Scraper that will be used"}>
               dest_scraper
             </TableHeaderColumn>
