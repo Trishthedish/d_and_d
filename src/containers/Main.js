@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {SortableContainer, SortableElement, arrayMove} from 'react-sortable-hoc';
-import RaisedButton from 'material-ui/RaisedButton';
+// import RaisedButton from 'material-ui/RaisedButton';
 import RaisedButtons from '../components/RaisedButton'
 // import './App.css';
 // import 'react-virtualized/styles.css'
@@ -32,7 +32,10 @@ class Main extends Component {
            */}
 
          <h1 className="App-intro"> The Rules Table</h1>
-           <div><RaisedButton/></div>
+
+         <div>
+           <RaisedButtons engine={this.props.engine}/>
+         </div>
 
 
        </div>
@@ -43,9 +46,10 @@ class Main extends Component {
  }
 function MapStateToProps(state) {
   const name = state.main.name
+  const {engine} = state.main
   console.log("this is state: ", state)
   return {
-    name
+    name, engine
   }
 }
 
