@@ -28,9 +28,6 @@ const SortableItem = SortableElement(({value}) =>
         {value.proxy_bal}
       </TableRowColumn>
       <TableRowColumn className="td_box">
-        {value.division}
-      </TableRowColumn>
-      <TableRowColumn className="td_box">
         {value.dest_scraper}
       </TableRowColumn>
       <TableRowColumn className="td_box">
