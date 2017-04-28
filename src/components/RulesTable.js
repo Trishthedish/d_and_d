@@ -52,7 +52,6 @@ const SortableList = SortableContainer(
       <Table className="ruleTable">
         <TableHeader displaySelectAll = {false} adjustForCheckbox	= {false} >
           <TableRow
-            showRowHover = {true}
             rowNumber	= {1}
             displayBorder = {true}
             >
@@ -103,7 +102,7 @@ class SortableComponent extends Component {
 
   onSortEnd = ({oldIndex, newIndex}) => {
      this.setState({
-       rules: arrayMove(this.state.rules, oldIndex, newIndex),
+       rules: arrayMove(this.props.rules, oldIndex, newIndex),
      });
    };
    render() {
