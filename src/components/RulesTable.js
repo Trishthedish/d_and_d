@@ -103,17 +103,7 @@ const SortableList = SortableContainer(
 ) // end of SortableList
 
 class SortableComponent extends Component {
-  state = {
-    rules: [
-      {engine: "google", locale_regex: "", strategy: "first_page", keyword_regex: "", max_tries: 0, proxy_bal: "google_ec2", division: "➡️", dest_scraper: "Scrapeable.homepage_first_page_search", overwrite: "", raw_html: ""},
-      {engine: "google", locale_regex: "", strategy: "first_page", keyword_regex: "", max_tries: 0, proxy_bal: "google_ec2_intl", division: "➡️", dest_scraper: "Scrapeable.homepage_first_page_search", overwrite: "", raw_html: ""},
-      {engine: "google", locale_regex: "ko-KR", strategy: "first_page", keyword_regex: "", max_tries: 100, proxy_bal: "google_ec2_au", division: "➡️", dest_scraper: "Scrapeable.homepage_first_page_search", overwrite: "", raw_html: ""},
-      {engine: "yahoo", locale_regex: "ja-JP", strategy: "first_page", keyword_regex: "", max_tries: 0, proxy_bal: "yahoo_ec2", division: "➡️", dest_scraper: "Scrapeable.homepage_first_page_search", overwrite: "", raw_html: ""},
-      {engine: "yahoo", locale_regex: "", strategy: "", keyword_regex: "", max_tries: 0, proxy_bal: "yahoo_ec2", division: "➡️", dest_scraper: "Scrapeable.homepage_first_page_search", overwrite: "", raw_html: ""},
-      {engine: "bing", locale_regex: "zh-HK", strategy: "", keyword_regex: "", max_tries: 100, proxy_bal: "bing_api", division: "➡️", dest_scraper: "Scrapeable.homepage_first_page_search", overwrite: "", raw_html: ""},
-      {engine: "bing", locale_regex: "", strategy: "", keyword_regex: "", max_tries: 0, proxy_bal: "bing_ec2", division: "➡️", dest_scraper: "Scrapeable.homepage_first_page_search", overwrite: "", raw_html: ""}
-    ]
-  };
+
   onSortEnd = ({oldIndex, newIndex}) => {
      this.setState({
        rules: arrayMove(this.state.rules, oldIndex, newIndex),
@@ -123,7 +113,7 @@ class SortableComponent extends Component {
     const currentEngineFilter = this.props.engine // comes from a reducer (MapStateToProps)
     // // this.props.rules comes from reducer (MapStateToProps)
     //
-    const filteredRules = this.state.rules.filter(function (rule) {
+    const filteredRules = this.props.rules.filter(function (rule) {
       if (currentEngineFilter === 'all') {
         return true
       } else {
@@ -141,7 +131,10 @@ class RulesTable extends Component {
   render() {
 
     return (
-      <div><SortableComponent engine={this.props.engine}/></div>
+      <div><SortableComponent engine={this.props.engine}
+        rules={this.props.rules}/>
+
+      </div>
 
     )
   }

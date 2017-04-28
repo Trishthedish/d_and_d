@@ -52,7 +52,9 @@ class Main extends Component {
          </div>
 
          <RulesTable
-           engine={this.props.engine}/>
+           engine={this.props.engine}
+           rules={this.props.rules}
+           />
        </div>
      </div>
    )
@@ -61,10 +63,10 @@ class Main extends Component {
  }
 function MapStateToProps(state) {
   const name = state.main.name
-  const {engine} = state.main
+  const {engine, rules} = state.main
   console.log("this is state: ", state)
   return {
-    name, engine
+    name, engine, rules
   }
 }
 
