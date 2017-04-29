@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import {SortableContainer, SortableElement, arrayMove} from 'react-sortable-hoc';
 // import RaisedButton from 'material-ui/RaisedButton';
 import RaisedButtons from '../components/RaisedButton'
 // import './App.css';
@@ -10,10 +9,10 @@ import PropTypes from 'prop-types';
 // Needed for onTouchTap, so error goes away
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
-
 import {connect} from 'react-redux'
-import {updateName, updateEngine} from '../actions'
+import {updateName, updateEngine, updateModal} from '../actions'
 import RulesTable from '../components/RulesTable'
+import RuleEditModal from '../components/RuleEditModal'
 
 class Main extends Component {
   nameChangeHandler = (event) =>  {
@@ -55,7 +54,9 @@ class Main extends Component {
            engine={this.props.engine}
            rules={this.props.rules}
            />
+
        </div>
+        <RuleEditModal editModalVisibility={this.props.editModalVisibility}/>
      </div>
    )
 
@@ -63,10 +64,10 @@ class Main extends Component {
  }
 function MapStateToProps(state) {
   const name = state.main.name
-  const {engine, rules} = state.main
+  const {engine, rules, editModalVisibility} = state.main
   console.log("this is state: ", state)
   return {
-    name, engine, rules
+    name, engine, rules, editModalVisibility
   }
 }
 

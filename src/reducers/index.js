@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux';
 
-import {UPDATE_NAME, UPDATE_ENGINE} from '../actions'
+import {UPDATE_NAME, UPDATE_ENGINE, UPDATE_MODAL} from '../actions'
 
 export const ENGINES = {
   ALL: 'all',
@@ -19,7 +19,12 @@ const defaultRules = [
   {id: 7, engine: "bing", locale_regex: "", strategy: "", keyword_regex: "", max_tries: 0, proxy_bal: "bing_ec2", dest_scraper: "Scrapeable.homepage_first_page_search", overwrite: "", raw_html: ""}
 ]
 
-function main(state={name: "", engine: 'all', rules: defaultRules}, action){
+function main(state={
+  name: "",
+  engine: 'all',
+  rules: defaultRules,
+  editModalVisibility: false
+  }, action ) {
 
   switch(action.type) {
     case UPDATE_NAME:
@@ -28,6 +33,8 @@ function main(state={name: "", engine: 'all', rules: defaultRules}, action){
     case UPDATE_ENGINE:
     // fill me in
       return Object.assign({}, state, {engine: action.engine})
+    case UPDATE_MODAL:
+    return Object.assign({}, state, {editModalVisibility: action.editModalVisibility})
 
     default:
     return state
