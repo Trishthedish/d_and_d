@@ -3,7 +3,7 @@ import 'react-virtualized/styles.css'
 import {SortableContainer, SortableElement, arrayMove} from 'react-sortable-hoc';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
-
+import {updateModal} from '../actions/'
 
 // allows rules to be sorted..
 const SortableItem = SortableElement(({value}) =>
