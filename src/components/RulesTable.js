@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types'; // ES6
 import 'react-virtualized/styles.css'
 import {SortableContainer, SortableElement, arrayMove} from 'react-sortable-hoc';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -9,7 +10,6 @@ import {updateModal} from '../actions/'
 
 
 class SortableItem extends Component {
-  debugger
   render() {
 
   return SortableElement(({value}) =>
@@ -42,12 +42,12 @@ class SortableItem extends Component {
       {value.raw_html}
     </TableRowColumn>
     <TableRowColumn className="td_box">
-      <FlatButton  label="edit"
+      <FlatButton
+        label="edit"
         onTouchTap={this.props.onRulesEdit}
         />
     </TableRowColumn>
-  </TableRow>
-) // end of SortableItem
+  </TableRow>) // end of SortableItem
   }
 
 }
@@ -55,7 +55,6 @@ class SortableItem extends Component {
 
 class SortableList extends Component {
   render() {
-
     return SortableContainer (
      (state) => {
        const {rules} = state
@@ -114,64 +113,63 @@ class SortableList extends Component {
   }
 }
  // SortableContainer(
-  (state) => {
-
-    const {rules} = state
-
-    return (
-
-      <Table className="ruleTable">
-        <TableHeader displaySelectAll = {false} adjustForCheckbox	= {false} >
-          <TableRow
-            rowNumber	= {1}
-            displayBorder = {true}
-            >
-            <TableHeaderColumn tooltip={"Search Engines: like google, bing, yahoo"}>
-              Engine
-            </TableHeaderColumn>
-            <TableHeaderColumn tooltip={"Language - Country of origin"}>
-              Locale Regex
-            </TableHeaderColumn>
-            <TableHeaderColumn tooltip={"What strategy to use"}>
-              Strategy
-            </TableHeaderColumn>
-            <TableHeaderColumn tooltip={"Who uses this??"}>
-              Keyword Regex
-            </TableHeaderColumn>
-            <TableHeaderColumn tooltip={"0 - 100"}>
-              max_tries
-            </TableHeaderColumn>
-            <TableHeaderColumn tooltip={"What Proxy Balancer to use"}>
-              proxy_bal
-            </TableHeaderColumn>
-            <TableHeaderColumn tooltip={"Scraper that will be used"}>
-              dest_scraper
-            </TableHeaderColumn>
-            <TableHeaderColumn tooltip={"No idea what this is."}>
-              overwrite
-            </TableHeaderColumn>
-            <TableHeaderColumn tooltip={"hardly ever used."}>
-              raw_html
-            </TableHeaderColumn>
-            <TableHeaderColumn tooltip={"You will edit"}>
-              EDIT
-            </TableHeaderColumn>
-          </TableRow>
-        </TableHeader>
-        <TableBody className="ruleTable"
-          showRowHover = {true}>
-            {rules.map((value, index) => (
-              <SortableItem key={`rule-${index}`} index={index} value={value} onRulesEdit={this.props.onRulesEdit}/>
-            ))}
-        </TableBody>
-    </Table>
-
-    );
-  }
+  // (state) => {
+  //
+  //   const {rules} = state
+  //
+  //   return (
+  //
+  //     <Table className="ruleTable">
+  //       <TableHeader displaySelectAll = {false} adjustForCheckbox	= {false} >
+  //         <TableRow
+  //           rowNumber	= {1}
+  //           displayBorder = {true}
+  //           >
+  //           <TableHeaderColumn tooltip={"Search Engines: like google, bing, yahoo"}>
+  //             Engine
+  //           </TableHeaderColumn>
+  //           <TableHeaderColumn tooltip={"Language - Country of origin"}>
+  //             Locale Regex
+  //           </TableHeaderColumn>
+  //           <TableHeaderColumn tooltip={"What strategy to use"}>
+  //             Strategy
+  //           </TableHeaderColumn>
+  //           <TableHeaderColumn tooltip={"Who uses this??"}>
+  //             Keyword Regex
+  //           </TableHeaderColumn>
+  //           <TableHeaderColumn tooltip={"0 - 100"}>
+  //             max_tries
+  //           </TableHeaderColumn>
+  //           <TableHeaderColumn tooltip={"What Proxy Balancer to use"}>
+  //             proxy_bal
+  //           </TableHeaderColumn>
+  //           <TableHeaderColumn tooltip={"Scraper that will be used"}>
+  //             dest_scraper
+  //           </TableHeaderColumn>
+  //           <TableHeaderColumn tooltip={"No idea what this is."}>
+  //             overwrite
+  //           </TableHeaderColumn>
+  //           <TableHeaderColumn tooltip={"hardly ever used."}>
+  //             raw_html
+  //           </TableHeaderColumn>
+  //           <TableHeaderColumn tooltip={"You will edit"}>
+  //             EDIT
+  //           </TableHeaderColumn>
+  //         </TableRow>
+  //       </TableHeader>
+  //       <TableBody className="ruleTable"
+  //         showRowHover = {true}>
+  //           {rules.map((value, index) => (
+  //             <SortableItem key={`rule-${index}`} index={index} value={value} onRulesEdit={this.props.onRulesEdit}/>
+  //           ))}
+  //       </TableBody>
+  //   </Table>
+  //
+  //   );
+  // }
 // ) // end of SortableList
 
 class SortableComponent extends Component {
-  debugger
   onSortEnd = ({oldIndex, newIndex}) => {
      this.setState({
        rules: arrayMove(this.props.rules, oldIndex, newIndex),
@@ -199,7 +197,8 @@ class RulesTable extends Component {
   render() {
 
     return (
-      <div><SortableComponent
+      <div>
+        <SortableComponent
         engine={this.props.engine}
         rules={this.props.rules}
         onRulesEdit={this.props.onRulesEdit}
