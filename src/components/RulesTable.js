@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import 'react-virtualized/styles.css'
 import {SortableContainer, SortableElement, arrayMove} from 'react-sortable-hoc';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+// import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
-import {updateModal} from '../actions/'
+import FlatButton from 'material-ui/FlatButton';
+// import {updateModal} from '../actions/'
 
 // allows rules to be sorted..
 const SortableItem = SortableElement(({value}) =>
@@ -36,6 +37,11 @@ const SortableItem = SortableElement(({value}) =>
       <TableRowColumn className="td_box">
         {value.raw_html}
       </TableRowColumn>
+      <TableRowColumn className="td_box">
+        <FlatButton
+          label="edit"
+          />
+      </TableRowColumn>
     </TableRow>
 ) // end of SortableItem
 
@@ -46,10 +52,10 @@ const SortableList = SortableContainer(
 
     return (
       <Table className="ruleTable">
-        <TableHeader displaySelectAll = {false} adjustForCheckbox	= {false} >
+        <TableHeader displaySelectAll={false} adjustForCheckbox={false} >
           <TableRow
-            rowNumber	= {1}
-            displayBorder = {true}
+            rowNumber={1}
+            displayBorder={true}
             >
             <TableHeaderColumn tooltip={"Search Engines: like google, bing, yahoo"}>
               Engine
@@ -78,12 +84,19 @@ const SortableList = SortableContainer(
             <TableHeaderColumn tooltip={"hardly ever used."}>
               raw_html
             </TableHeaderColumn>
+            <TableHeaderColumn tooltip={"hardly ever used."}>
+              Edit
+            </TableHeaderColumn>
           </TableRow>
         </TableHeader>
         <TableBody className="ruleTable"
-          showRowHover = {true}>
+          showRowHover={true}>
             {rules.map((value, index) => (
-              <SortableItem key={`rule-${index}`} index={index} value={value} />
+              <SortableItem
+                key={`rule-${index}`}
+                index={index}
+                value={value}
+                />
             ))}
         </TableBody>
     </Table>
@@ -112,7 +125,7 @@ class SortableComponent extends Component {
     })
   //   return <SortableList rules={filteredRules} onSortEnd={this.onSortEnd} />;
   // }
-    return <SortableList rules={filteredRules} onSortEnd={this.onSortEnd} />;
+    return <SortableList rules={filteredRules} onSortEnd={this.onSortEnd} onRulesEdit={this.props.onRulesEdit}/>;
   }
 } // end of SortableComponent
 
@@ -121,8 +134,10 @@ class RulesTable extends Component {
   render() {
 
     return (
-      <div><SortableComponent engine={this.props.engine}
-        rules={this.props.rules}/>
+      <div><SortableComponent
+        engine={this.props.engine}
+        rules={this.props.rules}
+        onRulesEdit={this.props.onRulesEdit}/>
 
       </div>
 

@@ -8,7 +8,6 @@ class RuleEditModal extends Component {
         isOpen={this.props.editModalVisibility}
         style={{zIndex:99}}
         onAfterOpen={()=>{console.log("opened so easy!")}}
-        onAfterOpen={ ()=> {console.log("oppened")}}
         onRequestClose={()=>{console.log("requestedClose")}}
         contentLabel="Modal">
         <h1>Modal Content</h1>

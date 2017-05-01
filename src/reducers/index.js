@@ -19,14 +19,18 @@ const defaultRules = [
   {id: 7, engine: "bing", locale_regex: "", strategy: "", keyword_regex: "", max_tries: 0, proxy_bal: "bing_ec2", dest_scraper: "Scrapeable.homepage_first_page_search", overwrite: "", raw_html: ""}
 ]
 
-function main(state={name: "", engine: 'all', rules: defaultRules}, action){
+function main(state={
+  name: "",
+  engine: 'all',
+  rules: defaultRules,
+  editModalVisibility: false
+  }, action){
 
   switch(action.type) {
     case UPDATE_NAME:
     return Object.assign({}, state,{name: action.name})
 
     case UPDATE_ENGINE:
-    // fill me in
       return Object.assign({}, state, {engine: action.engine})
 
     case UPDATE_MODAL:

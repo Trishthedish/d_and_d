@@ -2,7 +2,7 @@ export const UPDATE_NAME = 'UPDATE_NAME'
 export const UPDATE_ENGINE = 'UPDATE_ENGINE'
 export const UPDATE_MODAL = 'UPDATE_MODAL'
 
-export function updateName (name) {
+export function updateName(name) {
   return {
     type: UPDATE_NAME,
     name
