@@ -45,7 +45,6 @@ const SortableList = SortableContainer(
     const {rules} = state
 
     return (
-
       <Table className="ruleTable">
         <TableHeader displaySelectAll = {false} adjustForCheckbox	= {false} >
           <TableRow
@@ -82,9 +81,7 @@ const SortableList = SortableContainer(
           </TableRow>
         </TableHeader>
         <TableBody className="ruleTable"
-          showRowHover = {true}
-
-          >
+          showRowHover = {true}>
             {rules.map((value, index) => (
               <SortableItem key={`rule-${index}`} index={index} value={value} />
             ))}

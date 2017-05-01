@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux';
 
-import {UPDATE_NAME, UPDATE_ENGINE} from '../actions'
+import {UPDATE_NAME, UPDATE_ENGINE, UPDATE_MODAL} from '../actions'
 
 export const ENGINES = {
   ALL: 'all',
@@ -28,6 +28,9 @@ function main(state={name: "", engine: 'all', rules: defaultRules}, action){
     case UPDATE_ENGINE:
     // fill me in
       return Object.assign({}, state, {engine: action.engine})
+
+    case UPDATE_MODAL:
+      return Object.assign({},state, {editModalVisibility: action.editModalVisibility})
 
     default:
     return state
