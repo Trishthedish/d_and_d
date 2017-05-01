@@ -12,7 +12,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
 import {connect} from 'react-redux'
-import {updateName, updateEngine} from '../actions'
+import {updateName, updateEngine, updateModal} from '../actions'
 import RulesTable from '../components/RulesTable'
 
 class Main extends Component {

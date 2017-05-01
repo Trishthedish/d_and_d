@@ -1,4 +1,4 @@
-import react, {Component} from 'react';
+import React, {Component} from 'react';
 import Modal from 'react-modal'
 
 class RuleEditModal extends Component {
@@ -13,9 +13,8 @@ class RuleEditModal extends Component {
         contentLabel="Modal">
         <h1>Modal Content</h1>
         <p>Etc.</p>>
-
       </Modal>
     )}
 }
 
-export default RuleEditModal 
+export default RuleEditModal
