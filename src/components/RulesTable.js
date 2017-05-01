@@ -5,10 +5,11 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 import FlatButton from 'material-ui/FlatButton';
 import {updateModal} from '../actions/'
-debugger
 // allows rules to be sorted..
-class SortableItem extends Component {
 
+
+class SortableItem extends Component {
+  debugger
   render() {
 
   return SortableElement(({value}) =>
@@ -170,7 +171,7 @@ class SortableList extends Component {
 // ) // end of SortableList
 
 class SortableComponent extends Component {
-
+  debugger
   onSortEnd = ({oldIndex, newIndex}) => {
      this.setState({
        rules: arrayMove(this.props.rules, oldIndex, newIndex),
