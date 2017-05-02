@@ -30,11 +30,11 @@ class Main extends Component {
     let act = updateEngine(engineName)
     dispatch(act)
   }
-  editModalHandler = (editModalVisibility) => {
-    const dispatch = this.props.dispatch
-    let act = updateModal(editModalVisibility)
-    dispatch(act)
-  }
+  // editModalHandler = (editModalVisibility) => {
+  //   const dispatch = this.props.dispatch
+  //   let act = updateModal(editModalVisibility)
+  //   dispatch(act)
+  // }
 
    render() {
      return (
@@ -63,9 +63,12 @@ class Main extends Component {
          <RulesTable
            engine={this.props.engine}
            rules={this.props.rules}
+           onRuleEdit={() => this.props.dispatch(updateModal(true))}
            />
-         <RuleEditModal editModalVisibility={this.props.editModalVisibility}/>
+
        </div>
+       <RuleEditModal
+         editModalVisibility={this.props.editModalVisibility}/>
      </div>
    )
 

@@ -7,9 +7,10 @@ import FlatButton from 'material-ui/FlatButton';
 // import {updateModal} from '../actions/'
 
 // allows rules to be sorted..
-const SortableItem = SortableElement(({value}) =>
-
-    <TableRow>
+const SortableItem = SortableElement((args) => {
+    const {value, onRuleEdit} = args
+    return (
+      <TableRow>
       <TableRowColumn className="td_box">
         {value.engine}
       </TableRowColumn>
@@ -40,15 +41,16 @@ const SortableItem = SortableElement(({value}) =>
       <TableRowColumn className="td_box">
         <FlatButton
           label="edit"
+          onTouchTap={onRuleEdit}
           />
       </TableRowColumn>
     </TableRow>
-) // end of SortableItem
+  )
+}) // end of SortableItem
 
 const SortableList = SortableContainer(
-  (state) => {
-
-    const {rules} = state
+  ({rules, onRuleEdit}) => {
+    //const {rules} = state
 
     return (
       <Table className="ruleTable">
@@ -84,7 +86,7 @@ const SortableList = SortableContainer(
             <TableHeaderColumn tooltip={"hardly ever used."}>
               raw_html
             </TableHeaderColumn>
-            <TableHeaderColumn tooltip={"hardly ever used."}>
+            <TableHeaderColumn tooltip={"Edit you Must!"}>
               Edit
             </TableHeaderColumn>
           </TableRow>
@@ -96,7 +98,9 @@ const SortableList = SortableContainer(
                 key={`rule-${index}`}
                 index={index}
                 value={value}
-                />
+                onRuleEdit={onRuleEdit}
+
+                />  // getting an error when I add onRulesEdit/ pluralized?
             ))}
         </TableBody>
     </Table>
@@ -125,19 +129,21 @@ class SortableComponent extends Component {
     })
   //   return <SortableList rules={filteredRules} onSortEnd={this.onSortEnd} />;
   // }
-    return <SortableList rules={filteredRules} onSortEnd={this.onSortEnd} onRulesEdit={this.props.onRulesEdit}/>;
+    return <SortableList
+      rules={filteredRules}
+      onSortEnd={this.onSortEnd}
+      onRuleEdit={this.props.onRuleEdit}/>;
   }
 } // end of SortableComponent
 
 
 class RulesTable extends Component {
   render() {
-
     return (
       <div><SortableComponent
         engine={this.props.engine}
         rules={this.props.rules}
-        onRulesEdit={this.props.onRulesEdit}/>
+        onRuleEdit={this.props.onRuleEdit}/>
 
       </div>
 
