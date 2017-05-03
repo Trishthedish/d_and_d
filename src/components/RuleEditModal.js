@@ -1,10 +1,7 @@
 import React, {Component} from 'react';
 import Modal from 'react-modal'
-// import FlatButton from 'material-ui/FlatButton';
-// import RaisedButton from 'material-ui/RaisedButton';
-import TextField from 'material-ui/TextField';
-import SelectField from 'material-ui/SelectField';
-import MenuItem from 'material-ui/MenuItem';
+import RaisedButton from 'material-ui/RaisedButton';
+
 
 class RuleEditModal extends Component {
   render() {
@@ -26,23 +23,29 @@ class RuleEditModal extends Component {
           ariaHideApp={false}
           shouldCloseOnOverlayClick={false}>
           <h1>Modal Content</h1>
-         <form>
-           <SelectField
-             floatingLabelText="This is the Engine list"
-             floatingLabelText="Engine"
-             floatingLabelFixed={true}
-             hintText="can we have this prefilled out?"
-             floatingLabelStyle={labelStyle}>
-            <MenuItem value={1} primaryText="Google" />
-            <MenuItem value={2} primaryText="Yaboo" />
-            <MenuItem value={3} primaryText="Bing" />
-           </SelectField>
-           <div style={labelStyle}>
-             locale Regex
-           </div>
-
-
-
+          <RaisedButton className="right-closing-button" label="close modal"  backgroundColor="red"/>
+          <button>WHY DOES THIS WORK TO CLOSE TIHNGS??</button>
+      <form>
+           <p>Engine</p>
+            <input/>
+           <p>Local Regex</p>
+            <input/>
+           <p>Strategy</p>
+            <input/>
+           <p>Keyword Regex</p>
+              <input/>
+           <p>Subscription</p>
+              <input/>
+           <p>Max Tries</p>
+              <input/>
+           <p>Proxy Balancer</p>
+              <input/>
+           <p>Destination Scraper</p>
+              <input/>
+           <p>Overwrite</p>
+              <input/>
+           <p>Raw HTML Source</p>
+              <input/>
          </form>
         </Modal>
       </div>
