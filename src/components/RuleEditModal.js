@@ -63,7 +63,7 @@ console.log()
                 label="Save Here"
                 primary={true}
                 onClick={onFormSave}
-                value="Save"  />
+                value="Save"/>
             </div>
           </form>
         </Modal>

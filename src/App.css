@@ -25,7 +25,6 @@
 .ruleTable {
   /*temporary color*/
   /*background-color: blue;*/
-  /*padding-left: 90px;*/
 }
 
 .td_box {
@@ -35,17 +34,6 @@
   border-color: cornflowerblue;*/
 }
 
-.RaisedButtonExampleSimple {
-  text-align: left;
-  border: solid;
-  border-width: thin;
-  border-color: green;
-  background-color: beige;
-}
-
-.RaisedButtonTitle {
-    text-align: center;
-}
 
 .right-closing-button {
   text-align: right;
@@ -53,12 +41,13 @@
 
 .Modal {
   background-color: #fff;
-  z-index: 999;
-  text-align: left;
+  z-index: 10;
+  text-align: justify;
   width: 75%;
   margin: 0 auto;
   border: 2px solid black;
   margin-top: 2em;
+  padding-left: 60px;
 }
 
 .Overlay {
@@ -76,4 +65,8 @@
 
 .top-btn-grp-filter {
   text-align: left;
+}
+
+.table_container {
+  padding: 2em;
 }

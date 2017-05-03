@@ -47,11 +47,15 @@ class Main extends Component {
              </p>
            </div>
            <h1 className="App-intro"> The Rules Table</h1>
-           <RulesTable
-             engine={this.props.engine}
-             rules={this.props.rules}
-             onRuleEdit={(ruleId) => this.props.dispatch(updateModal(true, ruleId))}
-           />
+
+           <section className="table_container">
+             <RulesTable
+               engine={this.props.engine}
+               rules={this.props.rules}
+               onRuleEdit={(ruleId) => this.props.dispatch(updateModal(true, ruleId))}
+              />
+           </section>
+
            <RuleEditModal
            editModalVisibility={this.props.editModalVisibility}
            rule={this.props.editingRule}
