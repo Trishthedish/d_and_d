@@ -36,53 +36,34 @@ class Main extends Component {
   //   dispatch(act)
   // }
    render() {
-
-
      return (
-     <div>
-       <h1>Hello World</h1>
        <div>
-         <input value={this.props.name} onChange={this.nameChangeHandler}/>
-         <p>HELLLOOOO: {this.props.name} !</p>
-       </div>
-
-
-       <div>
-         {/*
-   <RaisedButtonExampleSimple/>
-    <div><SortableComponent/></div>
-           */}
-
-         <h1 className="App-intro"> The Rules Table</h1>
-
-         <div>
-           <RaisedButtons
+           <div className="top-btn-grp-filter">
+             <RaisedButtons
+               engine={this.props.engine}
+               foobarHandler={this.engineChangeHandler}/>
+             <p>
+               This is curent engine === {this.props.engine}
+             </p>
+           </div>
+           <h1 className="App-intro"> The Rules Table</h1>
+           <RulesTable
              engine={this.props.engine}
-             foobarHandler={this.engineChangeHandler}/>
-           <p>This is curent engine === {this.props.engine}</p>
-         </div>
-
-         <RulesTable
-           engine={this.props.engine}
-           rules={this.props.rules}
-           onRuleEdit={(ruleId) => this.props.dispatch(updateModal(true, ruleId))}
+             rules={this.props.rules}
+             onRuleEdit={(ruleId) => this.props.dispatch(updateModal(true, ruleId))}
            />
-
-       </div>
-
-       <RuleEditModal
-         editModalVisibility={this.props.editModalVisibility}
-         rule={this.props.editingRule}
-         onRuleEdit={
-           (field, value) => {
-             this.props.dispatch(updateEditingRule(field, value))
+           <RuleEditModal
+           editModalVisibility={this.props.editModalVisibility}
+           rule={this.props.editingRule}
+           onRuleEdit={
+             (field, value) => {
+               this.props.dispatch(updateEditingRule(field, value))
+             }
            }
-          }
           onRuleSave={() => console.log('Save rule action') }
          />
-     </div>
-   )
-
+       </div>
+     )
    }
  }
 function MapStateToProps(state) {

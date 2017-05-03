@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Modal from 'react-modal'
-// import RaisedButton from 'material-ui/RaisedButton';
+import RaisedButton from 'material-ui/RaisedButton';
 import {updateEditingRule} from '../actions'
 
 class RuleEditModal extends Component {
@@ -58,9 +58,13 @@ console.log()
              <p>Raw HTML Source</p>
                 <input type="text" value={rule.raw_html}
                   onChange={(event) => onRuleEdit('raw_html', event.target.value)}/>
-            <p>
-              <button onClick={onFormSave} value="Save" >SAVE</button>
-            </p>
+            <div>
+              <RaisedButton
+                label="Save Here"
+                primary={true}
+                onClick={onFormSave}
+                value="Save"  />
+            </div>
           </form>
         </Modal>
       </div>
