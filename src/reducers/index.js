@@ -1,6 +1,9 @@
 import {combineReducers} from 'redux';
 
-import {UPDATE_NAME, UPDATE_ENGINE, UPDATE_MODAL} from '../actions'
+import {
+  UPDATE_NAME, UPDATE_ENGINE, UPDATE_MODAL,
+  UPDATE_EDITING_RULE
+} from '../actions'
 
 export const ENGINES = {
   ALL: 'all',
@@ -23,7 +26,9 @@ function main(state={
   name: "",
   engine: 'all',
   rules: defaultRules,
-  editModalVisibility: false
+  editModalVisibility: false,
+  editingRuleId: null,
+  editingRule: {}
   }, action){
 
   switch(action.type) {
@@ -34,7 +39,26 @@ function main(state={
       return Object.assign({}, state, {engine: action.engine})
 
     case UPDATE_MODAL:
-      return Object.assign({},state, {editModalVisibility: action.editModalVisibility})
+      const ruleId=action.ruleId
+      const editingRule = state.rules.filter(({id} = {}) => id === ruleId)[0]
+
+      return Object.assign({},state, {
+        editModalVisibility: action.editModalVisibility,
+        editingRuleId: ruleId,
+        editingRule
+      })
+
+    case UPDATE_EDITING_RULE:
+      const {field, value} = action
+      let changes = {}
+      changes[field] = value
+
+      const newRule = Object.assign({},
+        state.editingRule,
+        changes
+      )
+
+      return Object.assign({}, state, {editingRule: newRule})
 
     default:
     return state

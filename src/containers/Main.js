@@ -12,7 +12,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
 import {connect} from 'react-redux'
-import {updateName, updateEngine, updateModal} from '../actions'
+import {updateName, updateEngine, updateModal, updateEditingRule} from '../actions'
 import RulesTable from '../components/RulesTable'
 import RuleEditModal from '../components/RuleEditModal'
 
@@ -35,8 +35,9 @@ class Main extends Component {
   //   let act = updateModal(editModalVisibility)
   //   dispatch(act)
   // }
-
    render() {
+
+
      return (
      <div>
        <h1>Hello World</h1>
@@ -64,13 +65,21 @@ class Main extends Component {
          <RulesTable
            engine={this.props.engine}
            rules={this.props.rules}
-           onRuleEdit={() => this.props.dispatch(updateModal(true))}
+           onRuleEdit={(ruleId) => this.props.dispatch(updateModal(true, ruleId))}
            />
 
        </div>
 
        <RuleEditModal
-         editModalVisibility={this.props.editModalVisibility}/>
+         editModalVisibility={this.props.editModalVisibility}
+         rule={this.props.editingRule}
+         onRuleEdit={
+           (field, value) => {
+             this.props.dispatch(updateEditingRule(field, value))
+           }
+          }
+          onRuleSave={() => console.log('Save rule action') }
+         />
      </div>
    )
 
@@ -78,10 +87,13 @@ class Main extends Component {
  }
 function MapStateToProps(state) {
   const name = state.main.name
-  const {engine, rules, editModalVisibility} = state.main
+  const {
+    engine, rules, editModalVisibility, editingRuleId,
+    editingRule
+  } = state.main
   console.log("this is state: ", state, "<<<")
   return {
-    name, engine, rules, editModalVisibility
+    name, engine, rules, editModalVisibility, editingRuleId, editingRule
   }
 }
 
