@@ -10,7 +10,7 @@ import FlatButton from 'material-ui/FlatButton';
 const SortableItem = SortableElement((args) => {
     const {value, onRuleEdit} = args
     return (
-      <TableRow>
+      <TableRow style={{ width: 100, margin: 'auto' }}>
       <TableRowColumn className="td_box">
         {value.engine}
       </TableRowColumn>
@@ -40,8 +40,10 @@ const SortableItem = SortableElement((args) => {
       </TableRowColumn>
       <TableRowColumn className="td_box">
         <FlatButton
-          label="edit"
+          label="✏️"
           onTouchTap={onRuleEdit}
+          />
+        <FlatButton label="❌"
           />
       </TableRowColumn>
     </TableRow>

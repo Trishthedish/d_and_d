@@ -47,25 +47,27 @@
     text-align: center;
 }
 
+.right-closing-button {
+  text-align: right;
+}
+
 .Modal {
-  position: absolute;
-  top: 270px;
-  left: 180px;
-  right: 180px;
-  bottom: 270px;
-  /*used color to see a difference */
-  background-color: white;
+  background-color: #fff;
+  z-index: 999;
+  text-align: left;
+  width: 75%;
+  margin: 0 auto;
 }
 
 .Overlay {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
-  right: 0;
   bottom: 0;
-  background-color: rgba(87, 90, 102, 0.25);
-}
-
-.right-closing-button {
-  text-align: right;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: 999;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.75);
 }

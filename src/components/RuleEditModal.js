@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import Modal from 'react-modal'
 import RaisedButton from 'material-ui/RaisedButton';
 
-
 class RuleEditModal extends Component {
   render() {
   const labelStyle = {
@@ -14,17 +13,16 @@ class RuleEditModal extends Component {
       <div>
         <Modal
           isOpen={this.props.editModalVisibility}
+
           closeTimeoutMS={10}
           className="Modal"
           overlayClassName="Overlay"
           onAfterOpen={()=>{console.log("opened so easy!")}}
           onRequestClose={()=>{console.log("requestedClose")}}
           contentLabel="Edit Rule Modal"
-          ariaHideApp={false}
-          shouldCloseOnOverlayClick={false}>
+          shouldCloseOnOverlayClick={true}>
           <h1>Modal Content</h1>
           <RaisedButton className="right-closing-button" label="close modal"  backgroundColor="red"/>
-          <button>WHY DOES THIS WORK TO CLOSE TIHNGS??</button>
       <form>
            <p>Engine</p>
             <input/>

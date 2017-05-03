@@ -45,6 +45,7 @@ class Main extends Component {
          <p>HELLLOOOO: {this.props.name} !</p>
        </div>
 
+
        <div>
          {/*
    <RaisedButtonExampleSimple/>
@@ -67,6 +68,7 @@ class Main extends Component {
            />
 
        </div>
+
        <RuleEditModal
          editModalVisibility={this.props.editModalVisibility}/>
      </div>
