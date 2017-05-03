@@ -40,7 +40,7 @@ const SortableItem = SortableElement((args) => {
       </TableRowColumn>
       <TableRowColumn className="td_box">
         <FlatButton
-          label="✏️"
+          label="EDIT"
           onTouchTap={() => onRuleEdit(value.id)}
           />
         <FlatButton label="❌"
