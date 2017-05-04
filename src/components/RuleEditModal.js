@@ -14,6 +14,7 @@ console.log()
     }
     const {onRuleEdit, rule} = this.props
     const onFormSave = this.props.onRuleSave
+    
     console.log("RuleEditModal", rule);
     return (
       <div>

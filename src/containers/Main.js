@@ -12,7 +12,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
 import {connect} from 'react-redux'
-import {updateName, updateEngine, updateModal, updateEditingRule} from '../actions'
+import {updateName, updateEngine, updateModal, updateEditingRule, saveRule} from '../actions'
 import RulesTable from '../components/RulesTable'
 import RuleEditModal from '../components/RuleEditModal'
 
@@ -48,7 +48,7 @@ class Main extends Component {
            </div>
            <h1 className="App-intro"> The Rules Table</h1>
 
-           <section className="table_container">
+           <section className="table-container">
              <RulesTable
                engine={this.props.engine}
                rules={this.props.rules}
@@ -64,7 +64,10 @@ class Main extends Component {
                this.props.dispatch(updateEditingRule(field, value))
              }
            }
-          onRuleSave={() => console.log('Save rule action') }
+          onRuleSave={
+            () => {
+              this.props.dispatch(saveRule())
+            } }
          />
        </div>
      )

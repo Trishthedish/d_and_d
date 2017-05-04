@@ -102,7 +102,7 @@ const SortableList = SortableContainer(
                 value={value}
                 onRuleEdit={onRuleEdit}
 
-                />  // getting an error when I add onRulesEdit/ pluralized?
+                />
             ))}
         </TableBody>
     </Table>

@@ -2,7 +2,7 @@ import {combineReducers} from 'redux';
 
 import {
   UPDATE_NAME, UPDATE_ENGINE, UPDATE_MODAL,
-  UPDATE_EDITING_RULE
+  UPDATE_EDITING_RULE, SAVE_RULE
 } from '../actions'
 
 export const ENGINES = {
@@ -33,7 +33,7 @@ function main(state={
 
   switch(action.type) {
     case UPDATE_NAME:
-    return Object.assign({}, state,{name: action.name})
+      return Object.assign({}, state, {name: action.name})
 
     case UPDATE_ENGINE:
       return Object.assign({}, state, {engine: action.engine})
@@ -42,11 +42,10 @@ function main(state={
       const ruleId=action.ruleId
       const editingRule = state.rules.filter(({id} = {}) => id === ruleId)[0]
 
-      return Object.assign({},state, {
-        editModalVisibility: action.editModalVisibility,
-        editingRuleId: ruleId,
-        editingRule
-      })
+      return Object.assign({}, state, {
+          editModalVisibility: action.editModalVisibility,
+          editingRuleId: ruleId,
+          editingRule})
 
     case UPDATE_EDITING_RULE:
       const {field, value} = action
@@ -59,9 +58,22 @@ function main(state={
       )
 
       return Object.assign({}, state, {editingRule: newRule})
+    case SAVE_RULE:
+    // all rulevalues,
+      console.log("rules", state.rules);
+      const newRules =  [
+        ...state.rules.slice(0, state.editingRule.id - 1),
+        state.editingRule,
+        ...state.rules.slice(state.editingRule.id)
+      ];
+      return Object.assign({},
+        state, {
+          editModalVisibility: false,
+          rules: newRules}
+      )
 
     default:
-    return state
+      return state
   }
 }
 const appState = combineReducers({
