@@ -3,6 +3,7 @@ export const UPDATE_ENGINE = 'UPDATE_ENGINE'
 export const UPDATE_MODAL = 'UPDATE_MODAL'
 export const UPDATE_EDITING_RULE = 'UPDATE_EDITING_RULE'
 export const SAVE_RULE = 'SAVE_RULE'
+export const CLOSE_MODAL = "CLOSE_MODAL"
 
 export function updateName(name) {
   return {
@@ -35,5 +36,12 @@ export function updateEditingRule(field, value) {
 export function saveRule() {
   return {
     type: SAVE_RULE,
+  }
+}
+
+export function closeModal(editModalVisibility) {
+  return {
+    type: CLOSE_MODAL,
+    editModalVisibility
   }
 }

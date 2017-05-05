@@ -1,20 +1,20 @@
 import React, {Component} from 'react';
 import Modal from 'react-modal'
 import RaisedButton from 'material-ui/RaisedButton';
-// import {updateEditingRule} from '../actions'
+
 
 class RuleEditModal extends Component {
-
   render() {
-console.log()
+    console.log('## MODAL DATA AND PROPS:', this.props)
     // Update this.props.rule check to be 'isEmpty' because Boolean({}) is true
     if (!(this.props.editModalVisibility && this.props.rule)) {
       // early return if we're not editing
       return null
     }
-    const {onRuleEdit, rule} = this.props
-    const onFormSave = this.props.onRuleSave
-    
+    const {onRuleEdit, rule, onRuleSave, onCancel} = this.props
+    // const onFormSave = this.props.onRuleSave
+
+
     console.log("RuleEditModal", rule);
     return (
       <div>
@@ -27,7 +27,7 @@ console.log()
           contentLabel="Edit Rule Modal"
           shouldCloseOnOverlayClick={true}>
           <h1>Editing Swappable Rule</h1>
-          <form onSubmit={onFormSave}>
+          <form onSubmit={this.props.onRuleSave}>
              <p>Engine</p>
               <textarea type='text' value={rule.engine}
                 onChange={(event) => onRuleEdit('engine', event.target.value)}
@@ -62,10 +62,17 @@ console.log()
             <div>
               <RaisedButton
                 label="Save Here"
-                primary={true}
-                onClick={onFormSave}
+                secondary={true}
+                onClick={onRuleSave}
                 value="Save"/>
+
+            <RaisedButton
+                label="Cancel Close"
+                primary={true}
+                onClick={onCancel}
+                value="Close"/>
             </div>
+
           </form>
         </Modal>
       </div>
