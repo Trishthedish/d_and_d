@@ -12,7 +12,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
 import {connect} from 'react-redux'
-import {updateName, updateEngine, updateModal, updateEditingRule, saveRule} from '../actions'
+import {updateName, updateEngine, updateModal, updateEditingRule, saveRule, closeModal} from '../actions'
 import RulesTable from '../components/RulesTable'
 import RuleEditModal from '../components/RuleEditModal'
 
@@ -68,7 +68,12 @@ class Main extends Component {
             () => {
               this.props.dispatch(saveRule())
             } }
-         />
+          onCancel={
+            () => {
+              this.props.dispatch(closeModal())
+            }}
+          />
+
        </div>
      )
    }
@@ -77,11 +82,11 @@ function MapStateToProps(state) {
   const name = state.main.name
   const {
     engine, rules, editModalVisibility, editingRuleId,
-    editingRule
+    editingRule, closeModal
   } = state.main
   console.log("this is state: ", state, "<<<")
   return {
-    name, engine, rules, editModalVisibility, editingRuleId, editingRule
+    name, engine, rules, editModalVisibility, editingRuleId, editingRule, closeModal
   }
 }
 
