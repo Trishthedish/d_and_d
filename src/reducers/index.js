@@ -2,7 +2,8 @@ import {combineReducers} from 'redux';
 
 import {
   UPDATE_NAME, UPDATE_ENGINE, UPDATE_MODAL,
-  UPDATE_EDITING_RULE, SAVE_RULE, CLOSE_MODAL
+  UPDATE_EDITING_RULE, SAVE_RULE, CLOSE_MODAL,
+  DELETE_RULE
 } from '../actions'
 
 export const ENGINES = {
@@ -73,9 +74,30 @@ function main(state={
       )
 
     case CLOSE_MODAL:
+    // const ruleId = action.ruleId
       return Object.assign({}, state, {
         editModalVisibility: false,
       })
+
+    case DELETE_RULE:
+      // let index = rules.findIndex((ruleId) => rule.ruleId ===  n);
+      // const ruleId = action.ruleId
+      debugger
+      const rulesWithoutDeleted = state.rules.filter(({id}) => {
+        return id !== action.ruleId
+      })
+
+      // const deletingRule = state.rules.filter(({id} = {}) => id == ruleId)[0]
+      // const newListOfRules = [
+      //   ...state.rules.slice(0, state.deletingRule.id),
+      //   ...state.rules.slice(state.deletingRule.id + 1)
+      // ]
+      //     console.log("deletingRule", deletingRule);
+        return Object.assign({},
+          state, {
+            rules: rulesWithoutDeleted
+          }
+        )
 
     default:
       return state

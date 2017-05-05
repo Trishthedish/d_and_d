@@ -12,7 +12,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
 import {connect} from 'react-redux'
-import {updateName, updateEngine, updateModal, updateEditingRule, saveRule, closeModal} from '../actions'
+import {updateName, updateEngine, updateModal, updateEditingRule, saveRule, closeModal, deleteRule} from '../actions'
 import RulesTable from '../components/RulesTable'
 import RuleEditModal from '../components/RuleEditModal'
 
@@ -21,6 +21,7 @@ class Main extends Component {
     const dispatch = this.props.dispatch
     let act = updateName(event.target.value)
     dispatch(act)
+
   }
   engineChangeHandler = (engineName) => {
     // console.log('engineChangeHandler:', engineName)
@@ -30,11 +31,12 @@ class Main extends Component {
     let act = updateEngine(engineName)
     dispatch(act)
   }
-  // editModalHandler = (editModalVisibility) => {
-  //   const dispatch = this.props.dispatch
-  //   let act = updateModal(editModalVisibility)
-  //   dispatch(act)
-  // }
+  deleteRuleHandler = (ruleId) => {
+    const dispatch = this.props.dispatch
+    let act = deleteRule(ruleId)
+    dispatch(act)
+    console.log('deleteRuleHandler: ', this)
+  }
    render() {
      return (
        <div>
@@ -53,6 +55,7 @@ class Main extends Component {
                engine={this.props.engine}
                rules={this.props.rules}
                onRuleEdit={(ruleId) => this.props.dispatch(updateModal(true, ruleId))}
+               onRuleDelete={this.deleteRuleHandler}
               />
            </section>
 
@@ -86,8 +89,10 @@ function MapStateToProps(state) {
   } = state.main
   console.log("this is state: ", state, "<<<")
   return {
-    name, engine, rules, editModalVisibility, editingRuleId, editingRule, closeModal
-  }
+    name, engine, rules, editModalVisibility, editingRuleId, editingRule,
+    closeModal
+   }
+
 }
 
 export default connect(MapStateToProps)(Main)
