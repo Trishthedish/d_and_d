@@ -1,14 +1,16 @@
 import React, {Component} from 'react';
 import 'react-virtualized/styles.css'
 import {SortableContainer, SortableElement, arrayMove} from 'react-sortable-hoc';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+// import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
-
+import FlatButton from 'material-ui/FlatButton';
+// import {updateModal} from '../actions/'
 
 // allows rules to be sorted..
-const SortableItem = SortableElement(({value}) =>
-
-    <TableRow>
+const SortableItem = SortableElement((args) => {
+    const {value, onRuleEdit} = args
+    return (
+      <TableRow style={{ width: 100, margin: 'auto' }}>
       <TableRowColumn className="td_box">
         {value.engine}
       </TableRowColumn>
@@ -36,21 +38,28 @@ const SortableItem = SortableElement(({value}) =>
       <TableRowColumn className="td_box">
         {value.raw_html}
       </TableRowColumn>
+      <TableRowColumn className="td_box">
+        <FlatButton
+          label="EDIT"
+          onTouchTap={() => onRuleEdit(value.id)}
+          />
+        <FlatButton label="❌"
+          />
+      </TableRowColumn>
     </TableRow>
-) // end of SortableItem
+  )
+}) // end of SortableItem
 
 const SortableList = SortableContainer(
-  (state) => {
-
-    const {rules} = state
+  ({rules, onRuleEdit}) => {
+    //const {rules} = state
 
     return (
-
       <Table className="ruleTable">
-        <TableHeader displaySelectAll = {false} adjustForCheckbox	= {false} >
+        <TableHeader displaySelectAll={false} adjustForCheckbox={false} >
           <TableRow
-            rowNumber	= {1}
-            displayBorder = {true}
+            rowNumber={1}
+            displayBorder={true}
             >
             <TableHeaderColumn tooltip={"Search Engines: like google, bing, yahoo"}>
               Engine
@@ -79,14 +88,21 @@ const SortableList = SortableContainer(
             <TableHeaderColumn tooltip={"hardly ever used."}>
               raw_html
             </TableHeaderColumn>
+            <TableHeaderColumn tooltip={"Edit you Must!"}>
+              Edit
+            </TableHeaderColumn>
           </TableRow>
         </TableHeader>
         <TableBody className="ruleTable"
-          showRowHover = {true}
-
-          >
+          showRowHover={true}>
             {rules.map((value, index) => (
-              <SortableItem key={`rule-${index}`} index={index} value={value} />
+              <SortableItem
+                key={`rule-${index}`}
+                index={index}
+                value={value}
+                onRuleEdit={onRuleEdit}
+
+                />
             ))}
         </TableBody>
     </Table>
@@ -115,17 +131,21 @@ class SortableComponent extends Component {
     })
   //   return <SortableList rules={filteredRules} onSortEnd={this.onSortEnd} />;
   // }
-    return <SortableList rules={filteredRules} onSortEnd={this.onSortEnd} />;
+    return <SortableList
+      rules={filteredRules}
+      onSortEnd={this.onSortEnd}
+      onRuleEdit={this.props.onRuleEdit}/>;
   }
 } // end of SortableComponent
 
 
 class RulesTable extends Component {
   render() {
-
     return (
-      <div><SortableComponent engine={this.props.engine}
-        rules={this.props.rules}/>
+      <div><SortableComponent
+        engine={this.props.engine}
+        rules={this.props.rules}
+        onRuleEdit={this.props.onRuleEdit}/>
 
       </div>
 

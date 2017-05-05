@@ -1,7 +1,10 @@
 export const UPDATE_NAME = 'UPDATE_NAME'
 export const UPDATE_ENGINE = 'UPDATE_ENGINE'
+export const UPDATE_MODAL = 'UPDATE_MODAL'
+export const UPDATE_EDITING_RULE = 'UPDATE_EDITING_RULE'
+export const SAVE_RULE = 'SAVE_RULE'
 
-export function updateName (name) {
+export function updateName(name) {
   return {
     type: UPDATE_NAME,
     name
@@ -12,5 +15,25 @@ export function updateEngine(engine) {
   return {
     type: UPDATE_ENGINE,
     engine
+  }
+}
+
+export function updateModal(editModalVisibility, ruleId) {
+  return {
+    type: UPDATE_MODAL,
+    editModalVisibility, ruleId
+  }
+}
+
+export function updateEditingRule(field, value) {
+  return {
+    type: UPDATE_EDITING_RULE,
+    field, value
+  }
+}
+
+export function saveRule() {
+  return {
+    type: SAVE_RULE,
   }
 }

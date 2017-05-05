@@ -3,10 +3,10 @@ import logo from './logo.svg';
 import './App.css';
 import 'react-virtualized/styles.css'
 // Using an ES6 transpiler like Babel
-import {SortableContainer, SortableElement, arrayMove} from 'react-sortable-hoc';
+// import {SortableContainer, SortableElement, arrayMove} from 'react-sortable-hoc';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
-import RaisedButton from 'material-ui/RaisedButton';
+// import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
+// import RaisedButton from 'material-ui/RaisedButton';
 
 // import ActionAndroid from 'material-ui/svg-icons/action/android';
 // import FontIcon from 'material-ui/FontIcon';
@@ -47,9 +47,9 @@ const store = configureStore()
 //   height: 40,
 // };
 
-const buttonStyle = {
-  margin: 12,
-}
+// const buttonStyle = {
+//   margin: 12,
+// }
 
 class App extends Component {
 

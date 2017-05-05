@@ -25,7 +25,6 @@
 .ruleTable {
   /*temporary color*/
   /*background-color: blue;*/
-  /*padding-left: 90px;*/
 }
 
 .td_box {
@@ -35,14 +34,39 @@
   border-color: cornflowerblue;*/
 }
 
-.RaisedButtonExampleSimple {
-  text-align: left;
-  border: solid;
-  border-width: thin;
-  borer-color: green;
-  background-color: beige;
+
+.right-closing-button {
+  text-align: right;
 }
 
-.RaisedButtonTitle {
-    text-align: center;
+.Modal {
+  background-color: #fff;
+  z-index: 10;
+  text-align: justify;
+  width: 75%;
+  margin: 0 auto;
+  border: 2px solid black;
+  margin-top: 2em;
+  padding-left: 60px;
+}
+
+.Overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: 999;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.75);
+}
+
+.top-btn-grp-filter {
+  text-align: left;
+}
+
+.table_container {
+  padding: 2em;
 }
