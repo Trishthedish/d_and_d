@@ -4,6 +4,8 @@ export const UPDATE_MODAL = 'UPDATE_MODAL'
 export const UPDATE_EDITING_RULE = 'UPDATE_EDITING_RULE'
 export const SAVE_RULE = 'SAVE_RULE'
 export const CLOSE_MODAL = "CLOSE_MODAL"
+export const ADD_RULE = "ADD_RULE"
+
 
 export function updateName(name) {
   return {
@@ -43,5 +45,13 @@ export function closeModal(editModalVisibility) {
   return {
     type: CLOSE_MODAL,
     editModalVisibility
+  }
+}
+
+// it seems like I might also need to pass field and value?
+export function addRule(editModalVisibility, field, value) {
+  return {
+    type: ADD_RULE,
+    editModalVisibility, field, value,
   }
 }
