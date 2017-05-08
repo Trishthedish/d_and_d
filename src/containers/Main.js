@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 // import {SortableContainer, SortableElement, arrayMove} from 'react-sortable-hoc';
-// import RaisedButton from 'material-ui/RaisedButton';
+import RaisedButton from 'material-ui/RaisedButton';
 import RaisedButtons from '../components/RaisedButton'
 // import './App.css';
 // import 'react-virtualized/styles.css'
@@ -46,6 +46,13 @@ class Main extends Component {
                This is curent engine === {this.props.engine}
              </p>
            </div>
+
+           <RaisedButton
+             label="Add New Rule"
+              backgroundColor="#C454DB"
+              labelColor="#fff"
+             />
+
            <h1 className="App-intro"> The Rules Table</h1>
 
            <section className="table-container">

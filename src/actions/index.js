@@ -49,9 +49,8 @@ export function closeModal(editModalVisibility) {
 }
 
 // it seems like I might also need to pass field and value?
-export function addRule(editModalVisibility, field, value) {
+export function addRule() {
   return {
     type: ADD_RULE,
-    editModalVisibility, field, value,
   }
 }
