@@ -5,7 +5,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 
 class RuleEditModal extends Component {
   render() {
-    console.log('## MODAL DATA AND PROPS:', this.props)
+    // console.log('## MODAL DATA AND PROPS:', this.props)
     // Update this.props.rule check to be 'isEmpty' because Boolean({}) is true
     if (!(this.props.editModalVisibility && this.props.rule)) {
       // early return if we're not editing

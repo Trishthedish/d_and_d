@@ -13,7 +13,8 @@ injectTapEventPlugin();
 
 import {connect} from 'react-redux'
 import {updateName, updateEngine, updateModal,
-  updateEditingRule, saveRule, closeModal, ruleAddModal} from '../actions'
+  updateEditingRule, saveRule, closeModal, ruleAddModal,
+closeModalRule} from '../actions'
 import RulesTable from '../components/RulesTable'
 import RuleEditModal from '../components/RuleEditModal'
 import RuleAddModal from '../components/RuleAddModal'
@@ -37,11 +38,6 @@ class Main extends Component {
     let act = ruleAddModal()
     dispatch(act)
   }
-  // editModalHandler = (editModalVisibility) => {
-  //   const dispatch = this.props.dispatch
-  //   let act = updateModal(editModalVisibility)
-  //   dispatch(act)
-  // }
 
 
    render() {
@@ -65,6 +61,9 @@ class Main extends Component {
 
              <RuleAddModal
                addModalVisibility={this.props.addModalVisibility}
+               onClose={
+                 () => {this.props.dispatch(closeModalRule())
+                 }}
                />
 
 
@@ -106,12 +105,14 @@ function MapStateToProps(state) {
   const name = state.main.name
   const {
     engine, rules, editModalVisibility, editingRuleId,
-    editingRule, closeModal, ruleAddModal, addModalVisibility
+    editingRule, closeModal, ruleAddModal, addModalVisibility,
+    closeModalRule
   } = state.main
   console.log("this is state: ", state, "<<<")
   return {
     name, engine, rules, editModalVisibility, editingRuleId,
-    editingRule, closeModal, ruleAddModal,addModalVisibility
+    editingRule, closeModal, ruleAddModal,addModalVisibility,
+    closeModalRule,
   }
 }
 

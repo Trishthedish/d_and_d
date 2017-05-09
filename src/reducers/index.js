@@ -3,7 +3,7 @@ import {combineReducers} from 'redux';
 import {
   UPDATE_NAME, UPDATE_ENGINE, UPDATE_MODAL,
   UPDATE_EDITING_RULE, SAVE_RULE, CLOSE_MODAL,
-  RULE_ADD_MODAL
+  RULE_ADD_MODAL, CLOSE_MODAL_RULE
 } from '../actions'
 
 export const ENGINES = {
@@ -107,6 +107,11 @@ function main(state={
 
     return Object.assign({}, state, {
       addModalVisibility: true,
+    })
+
+    case CLOSE_MODAL_RULE:
+    return Object.assign({}, state, {
+      addModalVisibility: false,
     })
 
     default:

@@ -4,8 +4,9 @@ import RaisedButton from 'material-ui/RaisedButton';
 
 class RuleAddModal extends Component {
   render() {
-
+      console.log('## MODAL DATA AND PROPS:', this.props)
     console.log("helllloooooooo from modal", this.props.onCancel, "<<");
+    const {onClose} = this.props
     return (
       <div className="RuleAddModal">
         <Modal
@@ -44,7 +45,7 @@ class RuleAddModal extends Component {
               <RaisedButton
                   label="Cancel Close"
                   primary={true}
-                  
+                  onClick={onClose}
                   value="Close"/>
               </div>
           </form>
