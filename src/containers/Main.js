@@ -61,7 +61,6 @@ class Main extends Component {
                label="Add Rule Button"
                labelColor="#fff"
                onTouchTap={this.addRuleHandler}
-
                />
 
              <RuleAddModal

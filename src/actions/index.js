@@ -5,6 +5,7 @@ export const UPDATE_EDITING_RULE = 'UPDATE_EDITING_RULE'
 export const SAVE_RULE = 'SAVE_RULE'
 export const CLOSE_MODAL = "CLOSE_MODAL"
 export const RULE_ADD_MODAL = "RULE_ADD_MODAL"
+export const CLOSE_MODAL_RULE = "CLOSE_MODAL_RULE"
 
 
 export function updateName(name) {
@@ -48,9 +49,16 @@ export function closeModal(editModalVisibility) {
   }
 }
 
-// it seems like I might also need to pass field and value?
+
 export function ruleAddModal() {
   return {
     type: RULE_ADD_MODAL,
+  }
+}
+// seems like I could use previous made action (closemodal)
+// Though b/c asyn desgin perhaps better to separate?
+export function closeModalRule(editModalVisibility) {
+  return {
+    type: CLOSE_MODAL_RULE,
   }
 }
