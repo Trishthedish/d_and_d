@@ -38,7 +38,11 @@ class Main extends Component {
     let act = ruleAddModal()
     dispatch(act)
   }
-
+ saveRuleHandler = (event) => {
+   const dispatch = this.props.dispatch
+   let act = saveAddRule()
+   dispatch(act)
+ }
 
    render() {
      return (
