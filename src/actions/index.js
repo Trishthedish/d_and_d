@@ -6,6 +6,7 @@ export const SAVE_RULE = 'SAVE_RULE'
 export const CLOSE_MODAL = "CLOSE_MODAL"
 export const RULE_ADD_MODAL = "RULE_ADD_MODAL"
 export const CLOSE_MODAL_RULE = "CLOSE_MODAL_RULE"
+export const SAVE_ADD_RULE = "SAVE_ADD_RULE"
 
 
 export function updateName(name) {
@@ -60,5 +61,12 @@ export function ruleAddModal() {
 export function closeModalRule(editModalVisibility) {
   return {
     type: CLOSE_MODAL_RULE,
+  }
+}
+
+export function saveAddRule(rules) {
+  return {
+    type: SAVE_ADD_RULE,
+    rules
   }
 }
