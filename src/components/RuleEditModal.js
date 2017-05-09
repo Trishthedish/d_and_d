@@ -69,10 +69,10 @@ class RuleEditModal extends Component {
             <RaisedButton
                 label="Cancel Close"
                 primary={true}
+                  {/* onRuleEditCancel*/}
                 onClick={onCancel}
                 value="Close"/>
             </div>
-
           </form>
         </Modal>
       </div>

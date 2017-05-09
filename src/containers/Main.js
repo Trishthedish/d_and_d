@@ -38,11 +38,6 @@ class Main extends Component {
     let act = ruleAddModal()
     dispatch(act)
   }
- saveRuleHandler = (event) => {
-   const dispatch = this.props.dispatch
-   let act = saveAddRule()
-   dispatch(act)
- }
 
    render() {
      return (
@@ -65,6 +60,9 @@ class Main extends Component {
 
              <RuleAddModal
                addModalVisibility={this.props.addModalVisibility}
+               onSave={
+                 () => {this.props.dispatch(saveAddRule())
+                 }}
                onClose={
                  () => {this.props.dispatch(closeModalRule())
                  }}
