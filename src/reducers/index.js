@@ -3,7 +3,7 @@ import {combineReducers} from 'redux';
 import {
   UPDATE_NAME, UPDATE_ENGINE, UPDATE_MODAL,
   UPDATE_EDITING_RULE, SAVE_RULE, CLOSE_MODAL,
-  ADD_RULE
+  RULE_ADD_MODAL
 } from '../actions'
 
 export const ENGINES = {
@@ -30,6 +30,7 @@ function main(state={
   editModalVisibility: false,
   editingRuleId: null,
   editingRule: {},
+  addModalVisibility: false,
   }, action){
 
   switch(action.type) {
@@ -75,32 +76,37 @@ function main(state={
 
     case CLOSE_MODAL:
       return Object.assign({}, state, {
-        editModalVisibility: false,
+        editModalVisibility: action.editModalVisibility,
       })
 
-  case ADD_RULE:
-  // CREATE a new blank rule
-  const blankRule = {}
-  // Find greatest RuleId that you already have + 1
-  const ruleIds = state.rules.map((rule) => rule.id)
-  ruleIds.sort();
-  const newRuleId = ruleIds[ruleIds.length - 1] + 1;
-  console.log("newRuleId >>", newRuleId)
+    // case ADD_RULE:
+    // // CREATE a new blank rule
+    // const blankRule = {}
+    // // Find greatest RuleId that you already have + 1
+    // const ruleIds = state.rules.map((rule) => rule.id)
+    // ruleIds.sort();
+    // const newRuleId = ruleIds[ruleIds.length - 1] + 1;
+    // console.log("newRuleId >>", newRuleId)
+    //
+    // const newRuleList = { id: newRuleId }
 
-  const newRuleList = { id: newRuleId }
 
+    // set new Rule id to above.
 
-  // set new Rule id to above.
+    // set editingRule to a copy of new rule.
 
-  // set editingRule to a copy of new rule.
+    // stuff new rule into Rules array.
+    // then turn on modal and edit.
 
-  // stuff new rule into Rules array.
-  // then turn on modal and edit.
+    // return Object.assign({},state, {
+    //   editModalVisibility: true,
+    //   rules: newRules,
+    //
+    // })
+    case RULE_ADD_MODAL:
 
-    return Object.assign({},state, {
-      editModalVisibility: true,
-      rules: newRules,
-
+    return Object.assign({}, state, {
+      addModalVisibility: true,
     })
 
     default:

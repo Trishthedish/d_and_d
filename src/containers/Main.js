@@ -12,9 +12,11 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
 import {connect} from 'react-redux'
-import {updateName, updateEngine, updateModal, updateEditingRule, saveRule, closeModal} from '../actions'
+import {updateName, updateEngine, updateModal,
+  updateEditingRule, saveRule, closeModal, ruleAddModal} from '../actions'
 import RulesTable from '../components/RulesTable'
 import RuleEditModal from '../components/RuleEditModal'
+import RuleAddModal from '../components/RuleAddModal'
 
 class Main extends Component {
   nameChangeHandler = (event) =>  {
@@ -30,11 +32,18 @@ class Main extends Component {
     let act = updateEngine(engineName)
     dispatch(act)
   }
+  addRuleHandler = (event) => {
+    const dispatch = this.props.dispatch
+    let act = ruleAddModal()
+    dispatch(act)
+  }
   // editModalHandler = (editModalVisibility) => {
   //   const dispatch = this.props.dispatch
   //   let act = updateModal(editModalVisibility)
   //   dispatch(act)
   // }
+
+
    render() {
      return (
        <div>
@@ -48,14 +57,23 @@ class Main extends Component {
            </div>
 
            <RaisedButton
-             label="Add New Rule"
-              backgroundColor="#C454DB"
-              labelColor="#fff"
-             />
+               backgroundColor="#B149C6"
+               label="Add Rule Button"
+               labelColor="#fff"
+               onTouchTap={this.addRuleHandler}
+
+               />
+
+             <RuleAddModal
+               addModalVisibility={this.props.addModalVisibility}
+               />
+
+
 
            <h1 className="App-intro"> The Rules Table</h1>
 
            <section className="table-container">
+
              <RulesTable
                engine={this.props.engine}
                rules={this.props.rules}
@@ -89,11 +107,12 @@ function MapStateToProps(state) {
   const name = state.main.name
   const {
     engine, rules, editModalVisibility, editingRuleId,
-    editingRule, closeModal
+    editingRule, closeModal, ruleAddModal, addModalVisibility
   } = state.main
   console.log("this is state: ", state, "<<<")
   return {
-    name, engine, rules, editModalVisibility, editingRuleId, editingRule, closeModal
+    name, engine, rules, editModalVisibility, editingRuleId,
+    editingRule, closeModal, ruleAddModal,addModalVisibility
   }
 }
 
