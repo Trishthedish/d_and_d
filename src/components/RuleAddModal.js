@@ -17,6 +17,7 @@ class RuleAddModal extends Component {
           contentLabel="Add Rule Modal"
           shouldCloseOnOverlayClick={true}>
           <h1> ADD RULE MODEL</h1>
+        
           <form>
             <p>Engine</p>
               <textarea/>
