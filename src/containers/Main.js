@@ -14,7 +14,7 @@ injectTapEventPlugin();
 import {connect} from 'react-redux'
 import {updateName, updateEngine, updateModal,
   updateEditingRule, saveRule, closeModal, ruleAddModal,
-closeModalRule} from '../actions'
+closeModalRule, saveAddRule} from '../actions'
 import RulesTable from '../components/RulesTable'
 import RuleEditModal from '../components/RuleEditModal'
 import RuleAddModal from '../components/RuleAddModal'
@@ -106,13 +106,13 @@ function MapStateToProps(state) {
   const {
     engine, rules, editModalVisibility, editingRuleId,
     editingRule, closeModal, ruleAddModal, addModalVisibility,
-    closeModalRule
+    closeModalRule, saveAddRule
   } = state.main
   console.log("this is state: ", state, "<<<")
   return {
     name, engine, rules, editModalVisibility, editingRuleId,
     editingRule, closeModal, ruleAddModal,addModalVisibility,
-    closeModalRule,
+    closeModalRule,saveAddRule
   }
 }
 

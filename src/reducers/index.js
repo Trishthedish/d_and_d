@@ -30,6 +30,7 @@ function main(state={
   editModalVisibility: false,
   editingRuleId: null,
   editingRule: {},
+  newlyAddedRule: {},
   addModalVisibility: false,
   }, action){
 
@@ -58,7 +59,6 @@ function main(state={
         state.editingRule,
         changes
       )
-
       return Object.assign({}, state, {editingRule: newRule})
     case SAVE_RULE:
     // all rulevalues,
@@ -78,7 +78,7 @@ function main(state={
       return Object.assign({}, state, {
         editModalVisibility: action.editModalVisibility,
       })
-
+//this one should be named better
     case RULE_ADD_MODAL:
 
     return Object.assign({}, state, {
@@ -92,15 +92,31 @@ function main(state={
     case SAVE_ADD_RULE:
     // case ADD_RULE:
     // // CREATE a new blank rule
-    const blankRule = {}
+
     // // Find greatest RuleId that you already have + 1
     const ruleIds = state.rules.map((rule) => rule.id)
     ruleIds.sort();
     const newRuleId = ruleIds[ruleIds.length - 1] + 1;
     console.log("newRuleId >>", newRuleId)
     //// set new Rule id to above.
-    const newRuleList = { id: newRuleId }
+    //
+    const newestRule = {
+      id: newRuleId,
+      engine: "",
+      locale_regex: "",
+      strategy: "",
+      keyword_regex: "",
+      max_tries: "",
+      prox_bal: "",
+      dest_scraper: "",
+      overwrite: "",
+      raw_html: "",
+    }
 
+
+    console.log("newestRule >>", newestRule)
+
+    // shovel this newly minted rule
     // set editingRule to a copy of new rule.
 
     // return Object.assign({},state, {
@@ -110,7 +126,8 @@ function main(state={
     // })
 
     return Object.assign({}, state, {
-
+      ...state,
+      rules:[...state.rules, action.newestRule]
     })
 
 
