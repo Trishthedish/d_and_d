@@ -56,6 +56,7 @@ class Main extends Component {
                label="Add Rule Button"
                labelColor="#fff"
                onTouchTap={this.addRuleHandler}
+
                />
 
              <RuleAddModal
@@ -72,7 +73,7 @@ class Main extends Component {
 
            <h1 className="App-intro"> The Rules Table</h1>
 
-           <section className="table-container">
+          <section className="table-container">
 
              <RulesTable
                engine={this.props.engine}
@@ -82,21 +83,21 @@ class Main extends Component {
            </section>
 
            <RuleEditModal
-           editModalVisibility={this.props.editModalVisibility}
-           rule={this.props.editingRule}
-           onRuleEdit={
-             (field, value) => {
-               this.props.dispatch(updateEditingRule(field, value))
+             editModalVisibility={this.props.editModalVisibility}
+             rule={this.props.editingRule}
+             onRuleEdit={
+               (field, value) => {
+                 this.props.dispatch(updateEditingRule(field, value))
+               }
              }
-           }
-          onRuleSave={
-            () => {
-              this.props.dispatch(saveRule())
-            } }
-          onCancel={
-            () => {
-              this.props.dispatch(closeModal())
-            }}
+            onEditRuleSave={
+              () => {
+                this.props.dispatch(saveRule())
+              } }
+            onEditRuleCancel={
+              () => {
+                this.props.dispatch(closeModal())
+              }}
           />
 
        </div>

@@ -5,13 +5,13 @@ import RaisedButton from 'material-ui/RaisedButton';
 
 class RuleEditModal extends Component {
   render() {
-    // console.log('## MODAL DATA AND PROPS:', this.props)
+    console.log('## MODAL DATA AND PROPS:', this.props, "<<<")
     // Update this.props.rule check to be 'isEmpty' because Boolean({}) is true
     if (!(this.props.editModalVisibility && this.props.rule)) {
       // early return if we're not editing
       return null
     }
-    const {onRuleEdit, rule, onRuleSave, onCancel} = this.props
+    const {onRuleEdit, rule, onEditRuleSave, onEditRuleCancel} = this.props
     // const onFormSave = this.props.onRuleSave
 
 
@@ -63,14 +63,13 @@ class RuleEditModal extends Component {
               <RaisedButton
                 label="Save Here"
                 secondary={true}
-                onClick={onRuleSave}
+                onClick={onEditRuleSave}
                 value="Save"/>
 
             <RaisedButton
                 label="Cancel Close"
                 primary={true}
-                  {/* onRuleEditCancel*/}
-                onClick={onCancel}
+                onClick={onEditRuleCancel}
                 value="Close"/>
             </div>
           </form>
