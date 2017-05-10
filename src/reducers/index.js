@@ -27,17 +27,15 @@ const defaultRules = [
 ]
 
 function main(state={
-  name: "",
   engine: 'all',
   rules: defaultRules,
   editModalVisibility: false,
   editingRuleId: null,
-  addingRuleId: null,
   editingRule: {},
-  addingRule: {},
+  addModalVisibility: false,
   updateEditingRule: {},
   updateAddingRule: {},
-  addModalVisibility: false,
+
   }, action){
 
   switch(action.type) {

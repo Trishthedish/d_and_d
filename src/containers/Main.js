@@ -67,7 +67,7 @@ class Main extends Component {
 
              <RuleAddModal
                addModalVisibility={this.props.addModalVisibility}
-               onRuleEdit={
+               onAddRule={
                  (field, value) => {
                    this.props.dispatch(updateAddingRule(field, value))
                  }
@@ -89,14 +89,14 @@ class Main extends Component {
              <RulesTable
                engine={this.props.engine}
                rules={this.props.rules}
-               onRuleEdit={(ruleId) => this.props.dispatch(updateEditModal(true, ruleId))}
+               onEditRule={(ruleId) => this.props.dispatch(updateEditModal(true, ruleId))}
               />
            </section>
 
            <RuleEditModal
              editModalVisibility={this.props.editModalVisibility}
              rule={this.props.editingRule}
-             onRuleEdit={
+             onEditRule={
                (field, value) => {
                  this.props.dispatch(updateEditingRule(field, value))
                }
@@ -116,15 +116,8 @@ class Main extends Component {
    }
  }
 
- //  updateEngine,
 
-  //  updateEditModal, updateEditingRule,
-  //  saveEditRule, closeEditRule,
-   //
-  //  updateAddModal, updateAddingRule,
-  //  saveAddRule, closeAddModal
 function MapStateToProps(state) {
-  const name = state.main.name
   const {
     engine, rules, editModalVisibility, editingRuleId,
     editingRule, addModalVisibility, updateEditModal, updateEditingRule,

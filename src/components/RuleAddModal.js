@@ -5,7 +5,8 @@ import RaisedButton from 'material-ui/RaisedButton';
 class RuleAddModal extends Component {
   render() {
     console.log("helllloooooooo from Add New modal", this.props, "<<");
-    const {onRuleEdit, rule, onAddRuleSave, onAddRuleCancel} = this.props
+    const {onAddRule, rule, onAddRuleSave, onAddRuleCancel} = this.props
+        console.log("helllloooooooo from Add New modal", this.rule, "<<");
     return (
       <div className="RuleAddModal">
         <Modal
@@ -19,7 +20,9 @@ class RuleAddModal extends Component {
           <h1> ADD RULE MODEL</h1>
             <form onSubmit={this.props.onRuleSave}>
               <p>Engine</p>
-               <textarea type='text'/>
+               <textarea type='text'
+                 onChange={(event) => onAddRule('engine', event.target.value)}
+                 />
               <p>Local Regex</p>
                <textarea type='text'/>
               <p>Strategy</p>
