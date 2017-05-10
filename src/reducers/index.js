@@ -35,7 +35,6 @@ function main(state={
   addModalVisibility: false,
   updateEditingRule: {},
   updateAddingRule: {},
-
   }, action){
 
   switch(action.type) {
@@ -45,7 +44,7 @@ function main(state={
 
 // actions for RuleEditModal .....
 // --------------------------------------------------------
-// determine and execute opening of modal based on its id.
+    // determine and execute opening of modal based on its id.
     // opens the modal.
     case UPDATE_EDIT_MODAL:
       const ruleId=action.ruleId
@@ -75,8 +74,7 @@ function main(state={
         })
 
       case SAVE_EDIT_RULE:
-      // all rulevalues,
-        console.log("rules", state.rules);
+        console.log("In reducers: rules", state.rules);
         const newRules =  [
           ...state.rules.slice(0, state.updateEditingRule.id - 1),
           state.editingRule,
@@ -88,9 +86,9 @@ function main(state={
             rules: newRules}
         )
 // -------------------------------------------------------
-// this is all logic to do with AddingRule Modal
+    // AddingRule Modal
     case UPDATE_ADD_MODAL:
-    // this is actually where the new Id making should go.
+      // creation of new id with first opening of blank rule.
       var ruleId = action.ruleId
       var ruleIds = state.rules.map((rule) => rule.id)
       ruleIds.sort();
@@ -100,16 +98,6 @@ function main(state={
       return Object.assign({}, state, {
       addModalVisibility: true,
     })
-
-//     case UPDATE_ADDING_MODAL:
-//
-//       const updateAddingRule = state.rules.filter(({id} = {}) => id === ruleId)[0]
-//         return Object.assign({}, state, {
-//           editModalVisibility: action.editModalVisibility,
-//           addingRuleId: ruleId,
-//           updateAddingRule
-//         })
-// //
     case UPDATE_ADDING_RULE:
       var {field, value} = action
       var changes = {}
@@ -134,15 +122,12 @@ function main(state={
       state.updateAddingRule,
       ...state.rules.slice(state.updateAddingRule.id)
     ];
-    return Object.assign({},
-      state, {
-        addModalVisibility: false,
-        rules: newestRules}
-      )
-
-
-
-    default:
+      return Object.assign({},
+        state, {
+          addModalVisibility: false,
+          rules: newestRules
+        })
+     default:
       return state
   }
 }

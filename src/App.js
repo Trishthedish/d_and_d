@@ -27,7 +27,7 @@ const store = configureStore()
 class App extends Component {
 
   render() {
-      console.log("App.js store: ", store)
+  console.log("App.js store: ", store)
     return (
       <MuiThemeProvider>
         <div className="App">

@@ -39,7 +39,6 @@ class RuleAddModal extends Component {
                  <textarea type="text"/>
               <p>Raw HTML Source</p>
                  <textarea type="text"/>
-
               <div>
                 <RaisedButton
                   label="Save Here"
@@ -47,11 +46,11 @@ class RuleAddModal extends Component {
                   onClick={onAddRuleSave}
                   value="Save"/>
 
-              <RaisedButton
-                  label="Cancel Close"
-                  primary={true}
-                  onClick={onAddRuleCancel}
-                  value="Close"/>
+                <RaisedButton
+                    label="Cancel Close"
+                    primary={true}
+                    onClick={onAddRuleCancel}
+                    value="Close"/>
               </div>
           </form>
         </Modal>
