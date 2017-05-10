@@ -60,7 +60,7 @@ function main(state={
       const {field, value} = action
       let changes = {}
       changes[field] = value
-
+      console.log("in Reducers/ there are #", state.rules.length, "Rules <<--AFTER ###.");
       const newRule = Object.assign({},
         state.editingRule,
         changes)
@@ -75,11 +75,13 @@ function main(state={
 
       case SAVE_EDIT_RULE:
         console.log("In reducers: rules", state.rules);
+        console.log("in Reducers/ there are #", state.rules.length, "Rules <<--currently.");
         const newRules =  [
           ...state.rules.slice(0, state.updateEditingRule.id - 1),
           state.editingRule,
           ...state.rules.slice(state.updateEditingRule.id)
         ];
+
         return Object.assign({},
           state, {
             editModalVisibility: false,

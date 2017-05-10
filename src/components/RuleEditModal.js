@@ -15,7 +15,7 @@ class RuleEditModal extends Component {
     // const onFormSave = this.props.onRuleSave
 
 
-    console.log("RuleEditModal", rule, "RuleEditModal");
+    console.log("From: RuleEditModal.js...rule:", rule, "<<<<");
     return (
       <div>
         <Modal
