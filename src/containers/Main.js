@@ -12,19 +12,25 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
 import {connect} from 'react-redux'
-import {updateName, updateEngine, updateModal,
-  updateEditingRule, saveRule, closeModal, ruleAddModal,
-closeModalRule, saveAddRule} from '../actions'
+import {
+  updateEngine,
+
+  updateEditModal, updateEditingRule,
+  saveEditRule, closeEditModal,
+
+  updateAddModal, updateAddingRule,
+  saveAddRule, closeAddModal } from '../actions'
+
 import RulesTable from '../components/RulesTable'
 import RuleEditModal from '../components/RuleEditModal'
 import RuleAddModal from '../components/RuleAddModal'
 
 class Main extends Component {
-  nameChangeHandler = (event) =>  {
-    const dispatch = this.props.dispatch
-    let act = updateName(event.target.value)
-    dispatch(act)
-  }
+  // nameChangeHandler = (event) =>  {
+  //   const dispatch = this.props.dispatch
+  //   let act = updateName(event.target.value)
+  //   dispatch(act)
+  // }
   engineChangeHandler = (engineName) => {
     // console.log('engineChangeHandler:', engineName)
     // return // todo remove me
@@ -35,7 +41,7 @@ class Main extends Component {
   }
   addRuleHandler = (event) => {
     const dispatch = this.props.dispatch
-    let act = ruleAddModal()
+    let act = updateAddModal()
     dispatch(act)
   }
 
@@ -61,11 +67,16 @@ class Main extends Component {
 
              <RuleAddModal
                addModalVisibility={this.props.addModalVisibility}
-               onSave={
+               onRuleEdit={
+                 (field, value) => {
+                   this.props.dispatch(updateAddingRule(field, value))
+                 }
+               }
+               onAddRuleSave={
                  () => {this.props.dispatch(saveAddRule())
                  }}
-               onClose={
-                 () => {this.props.dispatch(closeModalRule())
+               onAddRuleCancel={
+                 () => {this.props.dispatch(closeAddModal())
                  }}
                />
 
@@ -78,7 +89,7 @@ class Main extends Component {
              <RulesTable
                engine={this.props.engine}
                rules={this.props.rules}
-               onRuleEdit={(ruleId) => this.props.dispatch(updateModal(true, ruleId))}
+               onRuleEdit={(ruleId) => this.props.dispatch(updateEditModal(true, ruleId))}
               />
            </section>
 
@@ -92,11 +103,11 @@ class Main extends Component {
              }
             onEditRuleSave={
               () => {
-                this.props.dispatch(saveRule())
+                this.props.dispatch(saveEditRule())
               } }
             onEditRuleCancel={
               () => {
-                this.props.dispatch(closeModal())
+                this.props.dispatch(closeEditModal())
               }}
           />
 
@@ -104,18 +115,28 @@ class Main extends Component {
      )
    }
  }
+
+ //  updateEngine,
+
+  //  updateEditModal, updateEditingRule,
+  //  saveEditRule, closeEditRule,
+   //
+  //  updateAddModal, updateAddingRule,
+  //  saveAddRule, closeAddModal
 function MapStateToProps(state) {
   const name = state.main.name
   const {
     engine, rules, editModalVisibility, editingRuleId,
-    editingRule, closeModal, ruleAddModal, addModalVisibility,
-    closeModalRule, saveAddRule
+    editingRule, addModalVisibility, updateEditModal, updateEditingRule,
+    saveEditRule, closeEditRule, updateAddModal, updateAddingRule,
+    saveAddRule, closeAddModal,
   } = state.main
   console.log("this is state: ", state, "<<<")
   return {
-    name, engine, rules, editModalVisibility, editingRuleId,
-    editingRule, closeModal, ruleAddModal,addModalVisibility,
-    closeModalRule,saveAddRule
+    engine, rules, editModalVisibility, editingRuleId,
+    editingRule, addModalVisibility, updateEditModal, updateEditingRule,
+    saveEditRule, closeEditRule, updateAddModal, updateAddingRule,
+    saveAddRule, closeAddModal,
   }
 }
 

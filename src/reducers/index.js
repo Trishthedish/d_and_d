@@ -1,10 +1,13 @@
 import {combineReducers} from 'redux';
 
 import {
-  UPDATE_NAME, UPDATE_ENGINE, UPDATE_MODAL,
-  UPDATE_EDITING_RULE, SAVE_RULE, CLOSE_MODAL,
-  RULE_ADD_MODAL, CLOSE_MODAL_RULE, SAVE_ADD_RULE,
-} from '../actions'
+  UPDATE_ENGINE,
+
+  UPDATE_EDIT_MODAL, UPDATE_EDITING_RULE,
+  SAVE_EDIT_RULE, CLOSE_EDIT_MODAL,
+
+  UPDATE_ADD_MODAL, UPDATE_ADDING_RULE,
+  SAVE_ADD_RULE, CLOSE_ADD_MODAL} from '../actions'
 
 export const ENGINES = {
   ALL: 'all',
@@ -29,26 +32,32 @@ function main(state={
   rules: defaultRules,
   editModalVisibility: false,
   editingRuleId: null,
+  addingRuleId: null,
   editingRule: {},
-  newlyAddedRule: {},
+  addingRule: {},
+  updateEditingRule: {},
+  updateAddingRule: {},
   addModalVisibility: false,
   }, action){
 
   switch(action.type) {
-    case UPDATE_NAME:
-      return Object.assign({}, state, {name: action.name})
-
+    // OUTSIDE of Modal
     case UPDATE_ENGINE:
       return Object.assign({}, state, {engine: action.engine})
 
-    case UPDATE_MODAL:
+// actions for RuleEditModal .....
+// --------------------------------------------------------
+// determine and execute opening of modal based on its id.
+    // opens the modal.
+    case UPDATE_EDIT_MODAL:
       const ruleId=action.ruleId
       const editingRule = state.rules.filter(({id} = {}) => id === ruleId)[0]
 
       return Object.assign({}, state, {
           editModalVisibility: action.editModalVisibility,
           editingRuleId: ruleId,
-          editingRule})
+          editingRule
+      })
 
     case UPDATE_EDITING_RULE:
       const {field, value} = action
@@ -57,78 +66,81 @@ function main(state={
 
       const newRule = Object.assign({},
         state.editingRule,
-        changes
-      )
-      return Object.assign({}, state, {editingRule: newRule})
-    case SAVE_RULE:
-    // all rulevalues,
-      console.log("rules", state.rules);
-      const newRules =  [
-        ...state.rules.slice(0, state.editingRule.id - 1),
-        state.editingRule,
-        ...state.rules.slice(state.editingRule.id)
-      ];
-      return Object.assign({},
-        state, {
-          editModalVisibility: false,
-          rules: newRules}
-      )
-
-    case CLOSE_MODAL:
+        changes)
       return Object.assign({}, state, {
-        editModalVisibility: action.editModalVisibility,
+        editingRule: newRule
       })
-//this one should be named better
-    case RULE_ADD_MODAL:
 
-    return Object.assign({}, state, {
+      case CLOSE_EDIT_MODAL:
+        return Object.assign({}, state, {
+          editModalVisibility: action.editModalVisibility,
+        })
+
+      case SAVE_EDIT_RULE:
+      // all rulevalues,
+        console.log("rules", state.rules);
+        const newRules =  [
+          ...state.rules.slice(0, state.updateEditingRule.id - 1),
+          state.editingRule,
+          ...state.rules.slice(state.updateEditingRule.id)
+        ];
+        return Object.assign({},
+          state, {
+            editModalVisibility: false,
+            rules: newRules}
+        )
+// -------------------------------------------------------
+// this is all logic to do with AddingRule Modal
+    case UPDATE_ADD_MODAL:
+    // this is actually where the new Id making should go.
+      var ruleId = action.ruleId
+      var ruleIds = state.rules.map((rule) => rule.id)
+      ruleIds.sort();
+      var newRuleId = ruleIds[ruleIds.length - 1] + 1;
+      console.log("newRuleId >>", newRuleId)
+
+      return Object.assign({}, state, {
       addModalVisibility: true,
     })
 
-    case CLOSE_MODAL_RULE:
-    return Object.assign({}, state, {
-      addModalVisibility: false,
-    })
+//     case UPDATE_ADDING_MODAL:
+//
+//       const updateAddingRule = state.rules.filter(({id} = {}) => id === ruleId)[0]
+//         return Object.assign({}, state, {
+//           editModalVisibility: action.editModalVisibility,
+//           addingRuleId: ruleId,
+//           updateAddingRule
+//         })
+// //
+    case UPDATE_ADDING_RULE:
+      var {field, value} = action
+      var changes = {}
+      changes[field] = value
+
+      var newRule = Object.assign({},
+        state.addingRule,
+        changes)
+      return Object.assign({}, state, {
+        addingRule: newRule
+      })
+
+    case CLOSE_ADD_MODAL:
+      return Object.assign({}, state, {
+        addModalVisibility: action.addModalVisibility,
+      })
+
     case SAVE_ADD_RULE:
-    // case ADD_RULE:
-    // // CREATE a new blank rule
-
-    // // Find greatest RuleId that you already have + 1
-    const ruleIds = state.rules.map((rule) => rule.id)
-    ruleIds.sort();
-    const newRuleId = ruleIds[ruleIds.length - 1] + 1;
-    console.log("newRuleId >>", newRuleId)
-    //// set new Rule id to above.
-    //
-    const newestRule = {
-      id: newRuleId,
-      engine: "",
-      locale_regex: "",
-      strategy: "",
-      keyword_regex: "",
-      max_tries: "",
-      prox_bal: "",
-      dest_scraper: "",
-      overwrite: "",
-      raw_html: "",
-    }
-
-
-    console.log("newestRule >>", newestRule)
-
-    // shovel this newly minted rule
-    // set editingRule to a copy of new rule.
-
-    // return Object.assign({},state, {
-    //   editModalVisibility: true,
-    //   rules: newRules,
-    //
-    // })
-
-    return Object.assign({}, state, {
-      ...state,
-      rules:[...state.rules, action.newestRule]
-    })
+    // console.log("Save Add Rule  >>", rules, "<< rules")
+    const newestRules = [
+      ...state.rules.slice(0, state.updateAddingRule.id -1),
+      state.updateAddingRule,
+      ...state.rules.slice(state.updateAddingRule.id)
+    ];
+    return Object.assign({},
+      state, {
+        addModalVisibility: false,
+        rules: newestRules}
+      )
 
 
 

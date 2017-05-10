@@ -5,7 +5,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 class RuleAddModal extends Component {
   render() {
     console.log("helllloooooooo from Add New modal", this.props, "<<");
-    const {rule, onSave, onClose} = this.props
+    const {onRuleEdit, rule, onAddRuleSave, onAddRuleCancel} = this.props
     return (
       <div className="RuleAddModal">
         <Modal
@@ -18,21 +18,36 @@ class RuleAddModal extends Component {
           shouldCloseOnOverlayClick={true}>
           <h1> ADD RULE MODEL</h1>
             <form onSubmit={this.props.onRuleSave}>
+              <p>Engine</p>
+               <textarea type='text'/>
+              <p>Local Regex</p>
+               <textarea type='text'/>
+              <p>Strategy</p>
+               <textarea type="text"/>
+              <p>Keyword Regex</p>
+               <textarea type="text"/>
+              <p>Max Tries</p>
+               <textarea type="text"/>
+              <p>Proxy Balancer</p>
+                 <textarea type="text" />
+              <p>Destination Scraper</p>
+                 <textarea type="text"/>
+              <p>Overwrite</p>
+                 <textarea type="text"/>
+              <p>Raw HTML Source</p>
+                 <textarea type="text"/>
 
               <div>
                 <RaisedButton
                   label="Save Here"
                   secondary={true}
-                  onClick={onSave}
+                  onClick={onAddRuleSave}
                   value="Save"/>
-                // on add Cancel
-
 
               <RaisedButton
                   label="Cancel Close"
                   primary={true}
-
-                  onClick={onClose}
+                  onClick={onAddRuleCancel}
                   value="Close"/>
               </div>
           </form>
