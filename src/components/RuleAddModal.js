@@ -1,12 +1,17 @@
+//RuleAddModal.js
 import React, {Component} from 'react';
 import Modal from 'react-modal'
 import RaisedButton from 'material-ui/RaisedButton';
+import SelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/MenuItem';
+
 
 class RuleAddModal extends Component {
+  handleChange = (event, index, value) => this.setState({value});
   render() {
-    console.log("helllloooooooo from Add New modal", this.props, "<<");
+    console.log("RuleAddModal.js / 'this.props' :", this.props, " <<");
     const {onAddRule, rule, onAddRuleSave, onAddRuleCancel} = this.props
-        console.log("helllloooooooo from Add New modal", this.rule, "<<");
+        console.log("RuleAddModal.js/ 'this.state' :", this.state, " <<");
     return (
       <div className="RuleAddModal">
         <Modal
@@ -19,10 +24,16 @@ class RuleAddModal extends Component {
           shouldCloseOnOverlayClick={true}>
           <h1> ADD RULE MODEL</h1>
             <form onSubmit={this.props.onRuleSave}>
-              <p>Engine</p>
-               <textarea type='text'
-                 onChange={(event) => onAddRule('engine', event.target.value)}
-                 />
+              {/*TODO: figure out why, value is null.*/}
+              <SelectField
+                floatingLabelText="Your Engine Choices"
+                onChange={this.handleChange}>
+                <MenuItem value={1} primaryText="Google"/>
+                <MenuItem value={2} primaryText="Yahoo"/>
+                <MenuItem value={3} primaryText="Bing"/>
+                <MenuItem value={4} primaryText="Google-Mobile"/>
+                <MenuItem value={5} primaryText="None"/>
+              </SelectField>
               <p>Local Regex</p>
                <textarea type='text'/>
               <p>Strategy</p>
@@ -39,7 +50,7 @@ class RuleAddModal extends Component {
                  <textarea type="text"/>
               <p>Raw HTML Source</p>
                  <textarea type="text"/>
-              <div>
+              <div className="modal-btn-grp">
                 <RaisedButton
                   label="Save Here"
                   secondary={true}

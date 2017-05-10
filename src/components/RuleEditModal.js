@@ -11,8 +11,8 @@ class RuleEditModal extends Component {
       // early return if we're not editing
       return null
     }
-    const {onEditRule, rule, onEditRuleSave, onEditRuleCancel} = this.props
-    // const onFormSave = this.props.onRuleSave
+    const {onEditRule, rule, onEditRuleSave, onEditRuleCancel, onRuleSave} = this.props
+    // const onFormSave = this.props.onRuleSave // can't find this anyplace but editmodal
 
 
     console.log("From: RuleEditModal.js...rule:", rule, "<<<<");

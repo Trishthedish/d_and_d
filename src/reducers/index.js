@@ -96,10 +96,23 @@ function main(state={
       ruleIds.sort();
       var newRuleId = ruleIds[ruleIds.length - 1] + 1;
       console.log("newRuleId >>", newRuleId)
-
+      var newRule = {
+        id: newRuleId,
+        engine: "",
+        strategy: "",
+        keyword_regex: "",
+        max_tries: "",
+        proxy_bal: "",
+        dest_scraper: "",
+        overwrite: "",
+        raw_html: "",
+      }
       return Object.assign({}, state, {
-      addModalVisibility: true,
-    })
+        editModalVisibility: true,
+        // rules: state.rules.concat([newRule]),
+        editingRuleId: newRuleId,
+        editingRule: newRule
+      })
     case UPDATE_ADDING_RULE:
       var {field, value} = action
       var changes = {}
