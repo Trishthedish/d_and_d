@@ -1,12 +1,8 @@
 import {combineReducers} from 'redux';
 
 import {
-  UPDATE_ENGINE,
-
-  UPDATE_EDIT_MODAL, UPDATE_EDITING_RULE,
-  SAVE_EDIT_RULE, CLOSE_EDIT_MODAL,
-
-  UPDATE_ADD_MODAL, SAVE_ADD_RULE} from '../actions'
+  UPDATE_ENGINE,UPDATE_EDIT_MODAL, UPDATE_EDITING_RULE,
+  SAVE_EDIT_RULE, CLOSE_EDIT_MODAL, UPDATE_ADD_MODAL} from '../actions'
 
 export const ENGINES = {
   ALL: 'all',
@@ -31,18 +27,15 @@ function main(state={
   editModalVisibility: false,
   editingRuleId: null,
   editingRule: {},
-  addModalVisibility: false,
   updateEditingRule: {},
   updateAddingRule: {},
   }, action){
 
   switch(action.type) {
-    // OUTSIDE of Modal
+
     case UPDATE_ENGINE:
       return Object.assign({}, state, {engine: action.engine})
 
-// actions for RuleEditModal .....
-// --------------------------------------------------------
     // determine and execute opening of modal based on its id.
     // opens the modal.
     case UPDATE_EDIT_MODAL:
@@ -59,7 +52,6 @@ function main(state={
       const {field, value} = action
       let changes = {}
       changes[field] = value
-      console.log("in Reducers/ there are #", state.rules.length, "Rules <<- update editing rule ###.");
       const newRule = Object.assign({},
         state.editingRule,
         changes)
@@ -67,36 +59,33 @@ function main(state={
         editingRule: newRule
       })
 
-      case CLOSE_EDIT_MODAL:
-        return Object.assign({}, state, {
-          editModalVisibility: action.editModalVisibility,
-        })
+    case CLOSE_EDIT_MODAL:
+      return Object.assign({}, state, {
+        editModalVisibility: action.editModalVisibility,
+      })
 
-      case SAVE_EDIT_RULE:
-        console.log("In reducers: rules", state.rules);
-        console.log("in Reducers/ there are #", state.rules.length, "Rules <<--currently.");
+    case SAVE_EDIT_RULE:
+      console.log("In reducers: rules", state.rules);
+      console.log("in Reducers/ there are #", state.rules.length, "Rules <<--currently.");
 
-        const newRules = state.rules.map((rule) => {
-          return rule.id === state.editingRuleId ?
-            state.editingRule :
-            rule;
+      const newRules = state.rules.map((rule) => {
+        return rule.id === state.editingRuleId ?
+          state.editingRule :
+          rule;
         })
 
         return Object.assign({},
           state, {
             editModalVisibility: false,
             rules: newRules
-          }
-        )
-// -------------------------------------------------------
-    // AddingRule Modal
+        })
+
     case UPDATE_ADD_MODAL:
       // creation of new id with first opening of blank rule.
       var ruleId = action.ruleId
       var ruleIds = state.rules.map((rule) => rule.id)
       ruleIds.sort();
       var newRuleId = ruleIds[ruleIds.length - 1] + 1;
-      console.log("newRuleId is >>", newRuleId, "and the rule is ", newRule)
       var newRule = {
         id: newRuleId,
         engine: "",
@@ -110,47 +99,10 @@ function main(state={
       }
       return Object.assign({}, state, {
         editModalVisibility: true,
-        // rules: state.rules.concat([newRule]),
         editingRuleId: newRuleId,
         editingRule: newRule,
         rules: state.rules.concat([newRule]),
       })
-
-      // case SAVE_ADD_RULE:
-      //   console.log("In reducers: rules", state.rules);
-      //   console.log("in Reducers/ there are #", state.rules.length, "Rules <<--currently.");
-      //
-      //   const newRules = state.rules.map((rule) => {
-      //     return rule.id === state.editingRuleId ?
-      //       state.editingRule :
-      //       rule;
-      //   })
-      //
-      //   return Object.assign({},
-      //     state, {
-      //       editModalVisibility: false,
-      //       rules: newRules
-      //     }
-      //   )
-
-
-    // case CLOSE_ADD_MODAL:
-    //   return Object.assign({}, state, {
-    //     addModalVisibility: action.addModalVisibility,
-    //   })
-    //
-    // case SAVE_ADD_RULE:
-    // // console.log("Save Add Rule  >>", rules, "<< rules")
-    // const newestRules = [
-    //   ...state.rules.slice(0, state.updateAddingRule.id -1),
-    //   state.updateAddingRule,
-    //   ...state.rules.slice(state.updateAddingRule.id)
-    // ];
-    //   return Object.assign({},
-    //     state, {
-    //       addModalVisibility: false,
-    //       rules: newestRules
-    //     })
      default:
       return state
   }

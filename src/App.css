@@ -18,25 +18,18 @@
   font-size: large;
 }
 
+/* Animates Reacts logo */
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
-.ruleTable {
-  /*temporary color*/
-  /*background-color: blue;*/
-}
 
+/* Style per table box */
 .td_box {
-  /*padding: 10px;*/
-  /*border: solid;
+  /*padding: 2px;
+  border: solid;
   border-width: thin;
   border-color: cornflowerblue;*/
-}
-
-
-.right-closing-button {
-  text-align: right;
 }
 
 .Modal {
@@ -67,6 +60,14 @@
   text-align: left;
 }
 
-.table_container {
-  padding: 2em;
+.add-rule-btn-container {
+  text-align: right;
+}
+.add-rule-btn {
+  margin-right: 70px;
+}
+
+
+.table-container {
+  padding: 3em;
 }

@@ -1,36 +1,30 @@
 
 import React, { Component } from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
-// import {red500, yellow500, blue500, greenA200} from 'material-ui/styles/colors';
-// not clear if this import was actually doing anything.
-// import 'react-virtualized/styles.css'
 
 const buttonStyle = {
   margin: 8,
 }
-// careful, you've saved these filters as RaisedButtons
+
 class RaisedButtons extends Component {
   render() {
     const currentEngineFilter = this.props.engine
     const activeStyles = Object.assign(buttonStyle, {backgroundColor: 'purple'})
-    let clickHandler = this.props.foobarHandler
+    let clickHandler = this.props.filterHandler
     clickHandler = clickHandler || ( function () {
       console.log('You did not pass a click handler')
       // could also throw new Error 'you shall not pass'
     })
 
-    // this.props.engine is one of ['all', 'google', 'yahoo', 'bing']
-    // debugger
-    // console.log("(RaisedButton.js)currentEngineFilter = ", currentEngineFilter)
     return (
       <div className="RaisedButtons">
-
+        <br/>
         <RaisedButton
-            label="Google"
-            secondary={true}
-            style={currentEngineFilter === 'google' ? activeStyles : buttonStyle}
-            onTouchTap={() => clickHandler('google') }
-            />
+          label="Google"
+          secondary={true}
+          style={currentEngineFilter === 'google' ? activeStyles : buttonStyle}
+          onTouchTap={() => clickHandler('google') }
+          />
         <RaisedButton
           label="Yahoo"
           primary={true}
@@ -48,8 +42,6 @@ class RaisedButtons extends Component {
           style={currentEngineFilter === 'all' ? activeStyles : buttonStyle}
           onTouchTap={() => clickHandler('all') }
           />
-
-        <br />
       </div>
     )
   }

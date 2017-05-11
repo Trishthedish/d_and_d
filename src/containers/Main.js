@@ -1,19 +1,16 @@
 import React, { Component } from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import RaisedButtons from '../components/RaisedButton'
-// import PropTypes from 'prop-types'; to make error message go away
-// Needed for onTouchTap, so error goes away
+// allegedly 'PropTypes' import statement is necessary, but addding it doesn't make warning go away.
+// import PropTypes from 'prop-types';
+// injectTapEventPlugin: necessary for material-ui
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
 import {connect} from 'react-redux'
 import {
-  updateEngine,
-
-  updateEditModal, updateEditingRule,
-  saveEditRule, closeEditModal,
-
-  updateAddModal } from '../actions'
+  updateEngine, updateEditModal, updateEditingRule,
+  saveEditRule, closeEditModal, updateAddModal } from '../actions'
 
 import RulesTable from '../components/RulesTable'
 import RuleEditModal from '../components/RuleEditModal'
@@ -36,17 +33,17 @@ class Main extends Component {
            <div className="top-btn-grp-filter">
              <RaisedButtons
                engine={this.props.engine}
-               foobarHandler={this.engineChangeHandler}/>
-             <p>
-               This is curent engine === {this.props.engine}
-             </p>
+               filterHandler={this.engineChangeHandler}/>
            </div>
 
-           <RaisedButton
+          <div className="add-rule-btn-container">
+            <RaisedButton
+               className="add-rule-btn"
                backgroundColor="#B149C6"
                label="Add Rule Button"
                labelColor="#fff"
                onTouchTap={this.addRuleHandler} />
+           </div>
 
 
            <h1 className="App-intro"> The Rules Table</h1>
@@ -83,14 +80,14 @@ class Main extends Component {
 function MapStateToProps(state) {
   const {
     engine, rules, editModalVisibility, editingRuleId,
-    editingRule, addModalVisibility, updateEditModal, updateEditingRule,
-    saveEditRule, closeEditRule, updateAddModal, saveAddRule,
+    editingRule, updateEditModal, updateEditingRule,
+    saveEditRule, closeEditRule, updateAddModal,
   } = state.main
   // console.log("this is state: ", state, "<<<")
   return {
     engine, rules, editModalVisibility, editingRuleId,
-    editingRule, addModalVisibility, updateEditModal, updateEditingRule,
-    saveEditRule, closeEditRule, updateAddModal,saveAddRule,
+    editingRule, updateEditModal, updateEditingRule,
+    saveEditRule, closeEditRule, updateAddModal
   }
 }
 
