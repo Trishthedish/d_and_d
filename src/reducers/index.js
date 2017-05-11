@@ -2,7 +2,7 @@ import {combineReducers} from 'redux';
 
 import {
   UPDATE_ENGINE,UPDATE_EDIT_MODAL, UPDATE_EDITING_RULE,
-  SAVE_EDIT_RULE, CLOSE_EDIT_MODAL, UPDATE_ADD_MODAL} from '../actions'
+  SAVE_EDIT_RULE, CLOSE_EDIT_MODAL, UPDATE_ADD_MODAL, DELETE_RULE} from '../actions'
 
 export const ENGINES = {
   ALL: 'all',
@@ -103,9 +103,22 @@ function main(state={
         editingRule: newRule,
         rules: state.rules.concat([newRule]),
       })
-     default:
+    case DELETE_RULE:
+    console.log()
+    // // var ruleId = action.ruleId
+    // debugger
+    console.log("deletingRule", state.rules.engine)
+      const rulesWithoutDeleted = state.rules.filter(({id}) => {
+        return id !== action.ruleId
+      })
+        return Object.assign({},
+          state, {
+            rules: rulesWithoutDeleted
+        }
+      )
+    default:
       return state
-  }
+   }
 }
 const appState = combineReducers({
   main

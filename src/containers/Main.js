@@ -10,7 +10,7 @@ injectTapEventPlugin();
 import {connect} from 'react-redux'
 import {
   updateEngine, updateEditModal, updateEditingRule,
-  saveEditRule, closeEditModal, updateAddModal } from '../actions'
+  saveEditRule, closeEditModal, updateAddModal, deleteRule } from '../actions'
 
 import RulesTable from '../components/RulesTable'
 import RuleEditModal from '../components/RuleEditModal'
@@ -27,6 +27,12 @@ class Main extends Component {
     let act = updateAddModal()
     dispatch(act)
   }
+  deleteRuleHandler = (ruleId) => {
+    const dispatch = this.props.dispatch
+    let act = deleteRule()
+    dispatch(act)
+  }
+
    render() {
      return (
        <div>
@@ -52,6 +58,7 @@ class Main extends Component {
                engine={this.props.engine}
                rules={this.props.rules}
                onEditRule={(ruleId) => this.props.dispatch(updateEditModal(true, ruleId))}
+               onRuleDelete={this.deleteRuleHandler}
               />
            </section>
 
@@ -81,13 +88,13 @@ function MapStateToProps(state) {
   const {
     engine, rules, editModalVisibility, editingRuleId,
     editingRule, updateEditModal, updateEditingRule,
-    saveEditRule, closeEditRule, updateAddModal,
+    saveEditRule, closeEditRule, updateAddModal, deleteRule
   } = state.main
   // console.log("this is state: ", state, "<<<")
   return {
     engine, rules, editModalVisibility, editingRuleId,
     editingRule, updateEditModal, updateEditingRule,
-    saveEditRule, closeEditRule, updateAddModal
+    saveEditRule, closeEditRule, updateAddModal,deleteRule
   }
 }
 

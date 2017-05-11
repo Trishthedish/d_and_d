@@ -8,7 +8,7 @@ import FlatButton from 'material-ui/FlatButton';
 
 // allows rules to be sorted..
 const SortableItem = SortableElement((args) => {
-    const {value, onEditRule} = args
+    const {value, onEditRule, onRuleDelete} = args
     return (
       <TableRow style={{ width: 100, margin: 'auto' }}>
       <TableRowColumn className="td_box">
@@ -44,6 +44,7 @@ const SortableItem = SortableElement((args) => {
           onTouchTap={() => onEditRule(value.id)}
           />
         <FlatButton label="❌"
+          onTouchTap={()=> onRuleDelete(value.id)}
           />
       </TableRowColumn>
     </TableRow>
@@ -51,7 +52,7 @@ const SortableItem = SortableElement((args) => {
 }) // end of SortableItem
 
 const SortableList = SortableContainer(
-  ({rules, onEditRule}) => {
+  ({rules, onEditRule, onRuleDelete}) => {
     //const {rules} = state
 
     return (
@@ -93,16 +94,17 @@ const SortableList = SortableContainer(
             </TableHeaderColumn>
           </TableRow>
         </TableHeader>
-        <TableBody className="ruleTable"
-          showRowHover={true}>
+        <TableBody
+          className="ruleTable"
+          showRowHover={true} >
             {rules.map((value, index) => (
-              <SortableItem
-                key={`rule-${index}`}
-                index={index}
-                value={value}
-                onEditRule={onEditRule}
-
-                />
+                <SortableItem
+                  key={`rule-${index}`}
+                  index={index}
+                  value={value}
+                  onEditRule={onEditRule}
+                  onRuleDelete={onRuleDelete}
+                  />
             ))}
         </TableBody>
     </Table>
@@ -120,8 +122,7 @@ class SortableComponent extends Component {
    };
    render() {
     const currentEngineFilter = this.props.engine // comes from a reducer (MapStateToProps)
-    // // this.props.rules comes from reducer (MapStateToProps)
-    //
+
     const filteredRules = this.props.rules.filter(function (rule) {
       if (currentEngineFilter === 'all') {
         return true
@@ -129,12 +130,12 @@ class SortableComponent extends Component {
         return rule.engine === currentEngineFilter
       }
     })
-  //   return <SortableList rules={filteredRules} onSortEnd={this.onSortEnd} />;
-  // }
-    return <SortableList
-      rules={filteredRules}
-      onSortEnd={this.onSortEnd}
-      onEditRule={this.props.onEditRule}/>;
+
+      return <SortableList
+          rules={filteredRules}
+          onSortEnd={this.onSortEnd}
+          onEditRule={this.props.onEditRule}
+          onRuleDelete={this.props.onRuleDelete} />;
   }
 } // end of SortableComponent
 
@@ -142,11 +143,13 @@ class SortableComponent extends Component {
 class RulesTable extends Component {
   render() {
     return (
-      <div><SortableComponent
-        engine={this.props.engine}
-        rules={this.props.rules}
-        onEditRule={this.props.onEditRule}/>
-
+      <div>
+        <SortableComponent
+          engine={this.props.engine}
+          rules={this.props.rules}
+          onEditRule={this.props.onEditRule}
+          onRuleDelete={this.props.onRuleDelete}
+        />
       </div>
 
     )

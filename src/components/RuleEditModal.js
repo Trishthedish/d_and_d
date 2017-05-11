@@ -12,7 +12,7 @@ class RuleEditModal extends Component {
       return null
     }
     const {onEditRule, rule, onEditRuleSave, onEditRuleCancel, onRuleSave} = this.props
-    const onFormSave = this.props.onRuleSave
+    // const onFormSave = this.props.onRuleSave
 
     return (
       <div>
@@ -25,7 +25,7 @@ class RuleEditModal extends Component {
           contentLabel="Edit Rule Modal"
           shouldCloseOnOverlayClick={true}>
           <h1>Editing Swappable Rule</h1>
-            <form onSubmit={this.props.onFormSave}>
+            <form onSubmit={this.props.onRuleSave}>
                <p>Engine</p>
                 <textarea type='text' value={rule.engine}
                   onChange={(event) => onEditRule('engine', event.target.value)}
