@@ -1,92 +1,93 @@
 import React, { Component } from 'react';
-// import {SortableContainer, SortableElement, arrayMove} from 'react-sortable-hoc';
-// import RaisedButton from 'material-ui/RaisedButton';
+import RaisedButton from 'material-ui/RaisedButton';
 import RaisedButtons from '../components/RaisedButton'
-// import './App.css';
-// import 'react-virtualized/styles.css'
-// Using an ES6 transpiler like Babel
+// allegedly 'PropTypes' import statement is necessary, but addding it doesn't make warning go away.
 // import PropTypes from 'prop-types';
-
-// Needed for onTouchTap, so error goes away
+// injectTapEventPlugin: necessary for material-ui
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
 import {connect} from 'react-redux'
-import {updateName, updateEngine, updateModal, updateEditingRule, saveRule, closeModal} from '../actions'
+import {
+  updateEngine, updateEditModal, updateEditingRule,
+  saveEditRule, closeEditModal, updateAddModal } from '../actions'
+
 import RulesTable from '../components/RulesTable'
 import RuleEditModal from '../components/RuleEditModal'
 
 class Main extends Component {
-  nameChangeHandler = (event) =>  {
-    const dispatch = this.props.dispatch
-    let act = updateName(event.target.value)
-    dispatch(act)
-  }
   engineChangeHandler = (engineName) => {
     // console.log('engineChangeHandler:', engineName)
-    // return // todo remove me
-
     const dispatch = this.props.dispatch
     let act = updateEngine(engineName)
     dispatch(act)
   }
-  // editModalHandler = (editModalVisibility) => {
-  //   const dispatch = this.props.dispatch
-  //   let act = updateModal(editModalVisibility)
-  //   dispatch(act)
-  // }
+  addRuleHandler = (event) => {
+    const dispatch = this.props.dispatch
+    let act = updateAddModal()
+    dispatch(act)
+  }
    render() {
      return (
        <div>
            <div className="top-btn-grp-filter">
              <RaisedButtons
                engine={this.props.engine}
-               foobarHandler={this.engineChangeHandler}/>
-             <p>
-               This is curent engine === {this.props.engine}
-             </p>
+               filterHandler={this.engineChangeHandler}/>
            </div>
-           <h1 className="App-intro"> The Rules Table</h1>
 
+          <div className="add-rule-btn-container">
+            <RaisedButton
+               className="add-rule-btn"
+               backgroundColor="#B149C6"
+               label="Add Rule Button"
+               labelColor="#fff"
+               onTouchTap={this.addRuleHandler} />
+           </div>
+
+
+           <h1 className="App-intro"> The Rules Table</h1>
            <section className="table-container">
              <RulesTable
                engine={this.props.engine}
                rules={this.props.rules}
-               onRuleEdit={(ruleId) => this.props.dispatch(updateModal(true, ruleId))}
+               onEditRule={(ruleId) => this.props.dispatch(updateEditModal(true, ruleId))}
               />
            </section>
 
            <RuleEditModal
-           editModalVisibility={this.props.editModalVisibility}
-           rule={this.props.editingRule}
-           onRuleEdit={
-             (field, value) => {
-               this.props.dispatch(updateEditingRule(field, value))
+             editModalVisibility={this.props.editModalVisibility}
+             rule={this.props.editingRule}
+             onEditRule={
+               (field, value) => {
+                 this.props.dispatch(updateEditingRule(field, value))
+               }
              }
-           }
-          onRuleSave={
-            () => {
-              this.props.dispatch(saveRule())
-            } }
-          onCancel={
-            () => {
-              this.props.dispatch(closeModal())
-            }}
-          />
-
+            onEditRuleSave={
+              () => {
+                this.props.dispatch(saveEditRule())
+              } }
+            onEditRuleCancel={
+              () => {
+                this.props.dispatch(closeEditModal())
+              }}/>
        </div>
      )
    }
  }
+
+
 function MapStateToProps(state) {
-  const name = state.main.name
   const {
     engine, rules, editModalVisibility, editingRuleId,
-    editingRule, closeModal
+    editingRule, updateEditModal, updateEditingRule,
+    saveEditRule, closeEditRule, updateAddModal,
   } = state.main
-  console.log("this is state: ", state, "<<<")
+  // console.log("this is state: ", state, "<<<")
   return {
-    name, engine, rules, editModalVisibility, editingRuleId, editingRule, closeModal
+    engine, rules, editModalVisibility, editingRuleId,
+    editingRule, updateEditModal, updateEditingRule,
+    saveEditRule, closeEditRule, updateAddModal
   }
 }
 

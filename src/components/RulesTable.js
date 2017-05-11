@@ -8,7 +8,7 @@ import FlatButton from 'material-ui/FlatButton';
 
 // allows rules to be sorted..
 const SortableItem = SortableElement((args) => {
-    const {value, onRuleEdit} = args
+    const {value, onEditRule} = args
     return (
       <TableRow style={{ width: 100, margin: 'auto' }}>
       <TableRowColumn className="td_box">
@@ -41,7 +41,7 @@ const SortableItem = SortableElement((args) => {
       <TableRowColumn className="td_box">
         <FlatButton
           label="EDIT"
-          onTouchTap={() => onRuleEdit(value.id)}
+          onTouchTap={() => onEditRule(value.id)}
           />
         <FlatButton label="❌"
           />
@@ -51,7 +51,7 @@ const SortableItem = SortableElement((args) => {
 }) // end of SortableItem
 
 const SortableList = SortableContainer(
-  ({rules, onRuleEdit}) => {
+  ({rules, onEditRule}) => {
     //const {rules} = state
 
     return (
@@ -100,7 +100,7 @@ const SortableList = SortableContainer(
                 key={`rule-${index}`}
                 index={index}
                 value={value}
-                onRuleEdit={onRuleEdit}
+                onEditRule={onEditRule}
 
                 />
             ))}
@@ -134,7 +134,7 @@ class SortableComponent extends Component {
     return <SortableList
       rules={filteredRules}
       onSortEnd={this.onSortEnd}
-      onRuleEdit={this.props.onRuleEdit}/>;
+      onEditRule={this.props.onEditRule}/>;
   }
 } // end of SortableComponent
 
@@ -145,7 +145,7 @@ class RulesTable extends Component {
       <div><SortableComponent
         engine={this.props.engine}
         rules={this.props.rules}
-        onRuleEdit={this.props.onRuleEdit}/>
+        onEditRule={this.props.onEditRule}/>
 
       </div>
 

@@ -1,27 +1,22 @@
-export const UPDATE_NAME = 'UPDATE_NAME'
 export const UPDATE_ENGINE = 'UPDATE_ENGINE'
-export const UPDATE_MODAL = 'UPDATE_MODAL'
+export const UPDATE_EDIT_MODAL = 'UPDATE_EDIT_MODAL'
 export const UPDATE_EDITING_RULE = 'UPDATE_EDITING_RULE'
-export const SAVE_RULE = 'SAVE_RULE'
-export const CLOSE_MODAL = "CLOSE_MODAL"
+export const SAVE_EDIT_RULE = 'SAVE_EDIT_RULE'
+export const CLOSE_EDIT_MODAL = "CLOSE_EDIT_MODAL"
+export const UPDATE_ADD_MODAL = "UPDATE_ADD_MODAL"
 
-export function updateName(name) {
-  return {
-    type: UPDATE_NAME,
-    name
-  }
-}
-
+// General Page Concern
 export function updateEngine(engine) {
   return {
     type: UPDATE_ENGINE,
     engine
   }
 }
-
-export function updateModal(editModalVisibility, ruleId) {
+// Concerned with Modals + Editing + Adding Rules
+// ---------------------------------------------------- //
+export function updateEditModal(editModalVisibility, ruleId) {
   return {
-    type: UPDATE_MODAL,
+    type: UPDATE_EDIT_MODAL,
     editModalVisibility, ruleId
   }
 }
@@ -33,15 +28,20 @@ export function updateEditingRule(field, value) {
   }
 }
 
-export function saveRule() {
+export function saveEditRule() {
   return {
-    type: SAVE_RULE,
+    type: SAVE_EDIT_RULE,
   }
 }
 
-export function closeModal(editModalVisibility) {
+export function closeEditModal(editModalVisibility) {
   return {
-    type: CLOSE_MODAL,
+    type: CLOSE_EDIT_MODAL,
     editModalVisibility
+  }
+}
+export function updateAddModal() {
+  return {
+    type: UPDATE_ADD_MODAL,
   }
 }
