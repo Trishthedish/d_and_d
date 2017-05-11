@@ -24,14 +24,6 @@
   to { transform: rotate(360deg); }
 }
 
-/* Style per table box */
-.td_box {
-  /*padding: 2px;
-  border: solid;
-  border-width: thin;
-  border-color: cornflowerblue;*/
-}
-
 .Modal {
   background-color: #fff;
   z-index: 10;
