@@ -5,7 +5,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 
 class RuleEditModal extends Component {
   render() {
-    console.log('## MODAL DATA AND PROPS:', this.props, "<<<")
+    // console.log('## MODAL DATA AND PROPS:', this.props, "<<<")
     // Update this.props.rule check to be 'isEmpty' because Boolean({}) is true
     if (!(this.props.editModalVisibility && this.props.rule)) {
       // early return if we're not editing
@@ -15,7 +15,7 @@ class RuleEditModal extends Component {
     // const onFormSave = this.props.onRuleSave // can't find this anyplace but editmodal
 
 
-    console.log("From: RuleEditModal.js...rule:", rule, "<<<<");
+    // console.log("From: RuleEditModal.js...rule:", rule, "<<<<");
     return (
       <div>
         <Modal

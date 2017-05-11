@@ -13,12 +13,10 @@ import {
   updateEditModal, updateEditingRule,
   saveEditRule, closeEditModal,
 
-  updateAddModal, updateAddingRule,
-  saveAddRule, closeAddModal } from '../actions'
+  updateAddModal } from '../actions'
 
 import RulesTable from '../components/RulesTable'
 import RuleEditModal from '../components/RuleEditModal'
-import RuleAddModal from '../components/RuleAddModal'
 
 class Main extends Component {
   engineChangeHandler = (engineName) => {
@@ -50,19 +48,7 @@ class Main extends Component {
                labelColor="#fff"
                onTouchTap={this.addRuleHandler} />
 
-           <RuleAddModal
-             addModalVisibility={this.props.addModalVisibility}
-             onAddRule={
-               (field, value) => {
-                 this.props.dispatch(updateAddingRule(field, value))
-               }
-             }
-             onAddRuleSave={
-               () => {this.props.dispatch(saveAddRule())
-               }}
-             onAddRuleCancel={
-               () => {this.props.dispatch(closeAddModal())
-               }}/>
+
            <h1 className="App-intro"> The Rules Table</h1>
            <section className="table-container">
              <RulesTable
@@ -98,15 +84,13 @@ function MapStateToProps(state) {
   const {
     engine, rules, editModalVisibility, editingRuleId,
     editingRule, addModalVisibility, updateEditModal, updateEditingRule,
-    saveEditRule, closeEditRule, updateAddModal, updateAddingRule,
-    saveAddRule, closeAddModal,
+    saveEditRule, closeEditRule, updateAddModal, saveAddRule,
   } = state.main
-  console.log("this is state: ", state, "<<<")
+  // console.log("this is state: ", state, "<<<")
   return {
     engine, rules, editModalVisibility, editingRuleId,
     editingRule, addModalVisibility, updateEditModal, updateEditingRule,
-    saveEditRule, closeEditRule, updateAddModal, updateAddingRule,
-    saveAddRule, closeAddModal,
+    saveEditRule, closeEditRule, updateAddModal,saveAddRule,
   }
 }
 

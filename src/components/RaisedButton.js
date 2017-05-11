@@ -21,7 +21,7 @@ class RaisedButtons extends Component {
 
     // this.props.engine is one of ['all', 'google', 'yahoo', 'bing']
     // debugger
-    console.log("(RaisedButton.js)currentEngineFilter = ", currentEngineFilter)
+    // console.log("(RaisedButton.js)currentEngineFilter = ", currentEngineFilter)
     return (
       <div className="RaisedButtons">
 

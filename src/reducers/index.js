@@ -6,8 +6,7 @@ import {
   UPDATE_EDIT_MODAL, UPDATE_EDITING_RULE,
   SAVE_EDIT_RULE, CLOSE_EDIT_MODAL,
 
-  UPDATE_ADD_MODAL, UPDATE_ADDING_RULE,
-  SAVE_ADD_RULE, CLOSE_ADD_MODAL} from '../actions'
+  UPDATE_ADD_MODAL, SAVE_ADD_RULE} from '../actions'
 
 export const ENGINES = {
   ALL: 'all',
@@ -60,7 +59,7 @@ function main(state={
       const {field, value} = action
       let changes = {}
       changes[field] = value
-      console.log("in Reducers/ there are #", state.rules.length, "Rules <<--AFTER ###.");
+      console.log("in Reducers/ there are #", state.rules.length, "Rules <<- update editing rule ###.");
       const newRule = Object.assign({},
         state.editingRule,
         changes)
@@ -76,16 +75,18 @@ function main(state={
       case SAVE_EDIT_RULE:
         console.log("In reducers: rules", state.rules);
         console.log("in Reducers/ there are #", state.rules.length, "Rules <<--currently.");
-        const newRules =  [
-          ...state.rules.slice(0, state.updateEditingRule.id - 1),
-          state.editingRule,
-          ...state.rules.slice(state.updateEditingRule.id)
-        ];
+
+        const newRules = state.rules.map((rule) => {
+          return rule.id === state.editingRuleId ?
+            state.editingRule :
+            rule;
+        })
 
         return Object.assign({},
           state, {
             editModalVisibility: false,
-            rules: newRules}
+            rules: newRules
+          }
         )
 // -------------------------------------------------------
     // AddingRule Modal
@@ -95,7 +96,7 @@ function main(state={
       var ruleIds = state.rules.map((rule) => rule.id)
       ruleIds.sort();
       var newRuleId = ruleIds[ruleIds.length - 1] + 1;
-      console.log("newRuleId >>", newRuleId)
+      console.log("newRuleId is >>", newRuleId, "and the rule is ", newRule)
       var newRule = {
         id: newRuleId,
         engine: "",
@@ -111,37 +112,45 @@ function main(state={
         editModalVisibility: true,
         // rules: state.rules.concat([newRule]),
         editingRuleId: newRuleId,
-        editingRule: newRule
-      })
-    case UPDATE_ADDING_RULE:
-      var {field, value} = action
-      var changes = {}
-      changes[field] = value
-
-      var newRule = Object.assign({},
-        state.addingRule,
-        changes)
-      return Object.assign({}, state, {
-        addingRule: newRule
+        editingRule: newRule,
+        rules: state.rules.concat([newRule]),
       })
 
-    case CLOSE_ADD_MODAL:
-      return Object.assign({}, state, {
-        addModalVisibility: action.addModalVisibility,
-      })
+      // case SAVE_ADD_RULE:
+      //   console.log("In reducers: rules", state.rules);
+      //   console.log("in Reducers/ there are #", state.rules.length, "Rules <<--currently.");
+      //
+      //   const newRules = state.rules.map((rule) => {
+      //     return rule.id === state.editingRuleId ?
+      //       state.editingRule :
+      //       rule;
+      //   })
+      //
+      //   return Object.assign({},
+      //     state, {
+      //       editModalVisibility: false,
+      //       rules: newRules
+      //     }
+      //   )
 
-    case SAVE_ADD_RULE:
-    // console.log("Save Add Rule  >>", rules, "<< rules")
-    const newestRules = [
-      ...state.rules.slice(0, state.updateAddingRule.id -1),
-      state.updateAddingRule,
-      ...state.rules.slice(state.updateAddingRule.id)
-    ];
-      return Object.assign({},
-        state, {
-          addModalVisibility: false,
-          rules: newestRules
-        })
+
+    // case CLOSE_ADD_MODAL:
+    //   return Object.assign({}, state, {
+    //     addModalVisibility: action.addModalVisibility,
+    //   })
+    //
+    // case SAVE_ADD_RULE:
+    // // console.log("Save Add Rule  >>", rules, "<< rules")
+    // const newestRules = [
+    //   ...state.rules.slice(0, state.updateAddingRule.id -1),
+    //   state.updateAddingRule,
+    //   ...state.rules.slice(state.updateAddingRule.id)
+    // ];
+    //   return Object.assign({},
+    //     state, {
+    //       addModalVisibility: false,
+    //       rules: newestRules
+    //     })
      default:
       return state
   }
